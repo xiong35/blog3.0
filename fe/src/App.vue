@@ -1,12 +1,14 @@
-<template>
-  <div>hello</div>
-</template>
+<script lang="tsx">
+  import { defineComponent, ref } from "vue";
 
-<script lang="ts" setup></script>
+  export default defineComponent({
+    setup(props) {
+      return () => <div class="main"></div>;
+    },
+  });
+</script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .main {
-    background-color: var(--bg-2);
-    min-height: 100vh;
   }
 </style>

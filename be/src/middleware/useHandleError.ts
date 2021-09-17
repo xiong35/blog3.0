@@ -2,7 +2,6 @@ import { Middleware } from "koa";
 
 const useHandleError = function (): Middleware {
   return async (ctx, next) => {
-    // TODO fix all ctx.throw
     try {
       await next();
     } catch (err) {
@@ -36,7 +35,6 @@ export function createError({
   status: number;
   msg: string;
 }): undefined {
-  // console.log("# handleError", { msg });
   throw new Error(
     JSON.stringify({
       status,

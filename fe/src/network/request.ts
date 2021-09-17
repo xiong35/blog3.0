@@ -3,8 +3,6 @@ import { ref } from "vue";
 
 import { Ref } from "@vue/reactivity";
 
-import { BE_URL } from "../constants/domain";
-import { showToast } from "../reactivity/toast";
 import router from "../router";
 import { clearToken, getToken } from "../utils/token";
 
@@ -52,7 +50,7 @@ function request<T>(config: AxiosRequestConfig) {
   } else {
     requestSet.add(key);
     const instance = axios.create({
-      baseURL: BE_URL,
+      baseURL: "BE_URL",
       timeout: 60000,
       // withCredentials: true,
     });
@@ -124,7 +122,6 @@ function request<T>(config: AxiosRequestConfig) {
           }
           error.value = errStr;
           data.value = undefined;
-          showToast(errStr);
         })
         .finally(() => {
           fetching.value = false;

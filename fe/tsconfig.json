@@ -6,5 +6,5 @@
         "jsx": "preserve",
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true
-    }
+    },
 }

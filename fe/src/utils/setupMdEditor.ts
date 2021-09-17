@@ -25,28 +25,23 @@ import "@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css";
 // 代码高亮的插件, 引入以下支持的语言
 //#region langs
 import Prism from "prismjs"; // 必须引入才能让后面的引入得到Prism全局变量
+Prism.toString;
+
 import "prismjs/components/prism-bash";
 import "prismjs/components/prism-c";
 import "prismjs/components/prism-cmake";
-import "prismjs/components/prism-coffeescript";
 import "prismjs/components/prism-cpp";
-import "prismjs/components/prism-csharp";
 import "prismjs/components/prism-dart";
-import "prismjs/components/prism-docker";
 import "prismjs/components/prism-go";
-import "prismjs/components/prism-haskell";
 import "prismjs/components/prism-java";
 import "prismjs/components/prism-json";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-kotlin";
-import "prismjs/components/prism-less";
 import "prismjs/components/prism-nginx";
-// import "prismjs/components/prism-php"; // 不知道为啥 php 有问题, 所以,,, 再见了 php
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-sass";
 import "prismjs/components/prism-scss";
 import "prismjs/components/prism-sql";
-import "prismjs/components/prism-swift";
 import "prismjs/components/prism-typescript";
 //#endregion
 
@@ -66,11 +61,7 @@ VueMarkdownEditor.use(createCopyCodePlugin()); // 一键复制代码的插件
 
 // 扩展 xss 规则, 防止 style 注入
 VueMarkdownEditor.xss.extend({
-  onTag(
-    tag: string,
-    html: string,
-    options: { isClosing: boolean }
-  ) {
+  onTag(tag: string, html: string, options: { isClosing: boolean }) {
     if (tag === "style") {
       if (options.isClosing) {
         return "&lt;/style&gt;";

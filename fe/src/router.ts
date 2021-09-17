@@ -9,23 +9,23 @@ import { Component, defineAsyncComponent } from "@vue/runtime-core";
 // });
 
 const routes: RouteRecordRaw[] = [
-  {
-    path: "/",
-    name: "home",
-    component: Home,
-    meta: {
-      title: "首页",
-      mustLogin: true,
-    },
-  },
-  {
-    path: "/:foo(.*)*",
-    name: "not-found",
-    component: NotFound,
-    meta: {
-      title: "404",
-    },
-  },
+  // {
+  //   path: "/",
+  //   name: "home",
+  //   component: Home,
+  //   meta: {
+  //     title: "首页",
+  //     mustLogin: true,
+  //   },
+  // },
+  // {
+  //   path: "/:foo(.*)*",
+  //   name: "not-found",
+  //   component: NotFound,
+  //   meta: {
+  //     title: "404",
+  //   },
+  // },
 ];
 
 const router = createRouter({
