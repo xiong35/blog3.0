@@ -1,20 +1,15 @@
 <script lang="tsx">
   import { defineComponent, ref } from "vue";
-  import { RouterView } from "vue-router";
-  RouterView;
 
   export default defineComponent({
+    name: "Posts",
     setup(props) {
-      return () => (
-        <div class="main">
-          <RouterView />
-        </div>
-      );
+      return () => <div class="p-posts">Posts</div>;
     },
   });
 </script>
 
 <style lang="scss">
-  .main {
+  .p-posts {
   }
 </style>

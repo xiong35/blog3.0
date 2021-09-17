@@ -1,20 +1,15 @@
 <script lang="tsx">
   import { defineComponent, ref } from "vue";
-  import { RouterView } from "vue-router";
-  RouterView;
 
   export default defineComponent({
+    name: "CLoading",
     setup(props) {
-      return () => (
-        <div class="main">
-          <RouterView />
-        </div>
-      );
+      return () => <div class="c-loading">CLoading</div>;
     },
   });
 </script>
 
 <style lang="scss">
-  .main {
+  .c-loading {
   }
 </style>

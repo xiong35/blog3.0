@@ -2,30 +2,90 @@ import { createRouter, createWebHistory, RouteLocationRaw, RouteRecordRaw } from
 
 import { Component, defineAsyncComponent } from "@vue/runtime-core";
 
-// const Home = defineAsyncComponent({
-//   loader: () => import("./pages/Home.vue"),
-//   errorComponent: CErrorVue,
-//   loadingComponent: CLoadingVue,
-// });
+import CError from "./components/CError.vue";
+import CLoading from "./components/CLoading.vue";
+import { setTitle } from "./utils/setTitle";
+
+const About = defineAsyncComponent({
+  loader: () => import("./pages/About.vue"),
+  errorComponent: CError,
+  loadingComponent: CLoading,
+});
+const Admin = defineAsyncComponent({
+  loader: () => import("./pages/Admin.vue"),
+  errorComponent: CError,
+  loadingComponent: CLoading,
+});
+const Home = defineAsyncComponent({
+  loader: () => import("./pages/Home.vue"),
+  errorComponent: CError,
+  loadingComponent: CLoading,
+});
+const PostDetail = defineAsyncComponent({
+  loader: () => import("./pages/PostDetail.vue"),
+  errorComponent: CError,
+  loadingComponent: CLoading,
+});
+const Posts = defineAsyncComponent({
+  loader: () => import("./pages/Posts.vue"),
+  errorComponent: CError,
+  loadingComponent: CLoading,
+});
+const NotFound = defineAsyncComponent({
+  loader: () => import("./pages/NotFound.vue"),
+  errorComponent: CError,
+  loadingComponent: CLoading,
+});
 
 const routes: RouteRecordRaw[] = [
-  // {
-  //   path: "/",
-  //   name: "home",
-  //   component: Home,
-  //   meta: {
-  //     title: "首页",
-  //     mustLogin: true,
-  //   },
-  // },
-  // {
-  //   path: "/:foo(.*)*",
-  //   name: "not-found",
-  //   component: NotFound,
-  //   meta: {
-  //     title: "404",
-  //   },
-  // },
+  {
+    path: "/",
+    name: "home",
+    component: Home,
+    meta: {
+      title: "首页",
+    },
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: About,
+    meta: {
+      title: "关于我",
+    },
+  },
+  {
+    path: "/admin",
+    name: "admin",
+    component: Admin,
+    meta: {
+      title: "管理",
+    },
+  },
+  {
+    path: "/post-detail",
+    name: "post-detail",
+    component: PostDetail,
+    meta: {
+      title: "文章详情",
+    },
+  },
+  {
+    path: "/posts",
+    name: "posts",
+    component: Posts,
+    meta: {
+      title: "文章列表",
+    },
+  },
+  {
+    path: "/:foo(.*)*",
+    name: "not-found",
+    component: NotFound,
+    meta: {
+      title: "404",
+    },
+  },
 ];
 
 const router = createRouter({
@@ -33,9 +93,8 @@ const router = createRouter({
   routes,
 });
 
-const TRAILING = " | Xiong35's Blog";
 router.beforeEach(async (to, from) => {
-  document.title = (to.meta.title || "oops") + TRAILING;
+  setTitle((to.meta.title as string) || "oops");
 });
 
 export default router;
