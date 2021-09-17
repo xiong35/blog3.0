@@ -60,6 +60,7 @@ const routes: RouteRecordRaw[] = [
     component: Admin,
     meta: {
       title: "管理",
+      admin: true,
     },
   },
   {
