@@ -1,0 +1,36 @@
+{
+  "name": "be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "rm -rf dist && tsc",
+    "pro": "// TODO npx pm2 start ecosystem.config.js --env production -o /var/www/game/werewolf/werewolf-backend/log/pm2.log -e /var/www/game/werewolf/werewolf-backend/log/pm2-err.log",
+    "stop": "npx pm2 stop ecosystem.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^10.1.1",
+    "mongoose": "^6.0.5"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.3",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.4.4",
+    "@types/koa__cors": "^3.0.3",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^16.9.1",
+    "nodemon": "^2.0.12",
+    "pm2": "^5.1.1",
+    "ts-node": "^10.2.1",
+    "tsconfig-paths": "^3.11.0",
+    "typescript": "^4.4.3"
+  }
+}
