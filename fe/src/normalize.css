@@ -112,4 +112,5 @@ a:hover {
 input,
 textarea {
   font: inherit;
+  outline: none;
 }
