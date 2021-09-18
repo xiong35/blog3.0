@@ -11,7 +11,7 @@
         >
           {masks.map((m) => (
             <div
-              class="mask_block"
+              class="t-mask_block"
               style={{
                 top: m.y + "px",
                 left: m.x + "px",
@@ -29,11 +29,10 @@
 
 <style lang="scss">
   @import "../assets/css/variables.scss";
-  $m: "mask";
 
   .t-mask {
     display: none;
-    .#{$m}_block {
+    &_block {
       position: fixed;
       width: 19vmin;
       height: 19vmin;
