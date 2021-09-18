@@ -1,12 +1,33 @@
 <script lang="tsx">
   import { defineComponent, ref } from "vue";
+  import { isHovering } from "../reactivity/theCursor";
 
   export default defineComponent({
     name: "CommonLayout",
     setup(props, { slots }) {
       return () => (
         <div class="l-com">
-          <header class="l-com_header"></header>
+          <header class="l-com_header">
+            <div class="l-com_header-logo u-only-big">
+              Xiong<sup>35 </sup>'s Blog
+            </div>
+            <div class="u-spacer u-only-big"></div>
+
+            <div class="l-com_header-searchbar">
+              <input class="l-com_header-searchbar-input" />
+              <img
+                class="l-com_header-searchbar-icon"
+                src="/src/assets/img/search.svg"
+                onMouseleave={() => (isHovering.value = false)}
+                onMouseenter={() => (isHovering.value = true)}
+              />
+            </div>
+
+            <img
+              class="l-com_header-menu u-only-small"
+              src="/src/assets/img/menu.svg"
+            />
+          </header>
 
           <main class="l-com_main">
             <aside class="l-com_main-l"></aside>
@@ -37,20 +58,54 @@
       right: 0;
       top: 0;
       height: $header-h;
+
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+
       border-bottom: 1px solid $foreground;
-      background-color: pink;
+
+      &-logo {
+        font-weight: 100;
+        font-size: 120%;
+      }
+
+      &-searchbar {
+        border: 1px solid $foreground;
+        border-radius: 0;
+
+        display: flex;
+        align-items: center;
+        flex: 1 1 0;
+        @media (min-width: 768.321px) {
+          flex: 0 0 200px;
+        }
+        &-input {
+          border: none;
+          padding: 5px;
+          background-color: transparent;
+          flex: 1;
+        }
+        &-icon {
+          width: 1.5em;
+          padding: 0 0.5em;
+        }
+      }
+
+      &-menu {
+        width: 1.5em;
+        margin-left: 20px;
+      }
     }
 
     &_main {
       padding-top: $header-h;
       height: 100vh;
-      background-color: indianred;
       display: flex;
 
       &-l,
       &-r {
         flex: 0 0 200px;
-        background-color: bisque;
         height: 400px;
       }
       &-m {
@@ -59,7 +114,6 @@
     }
 
     &_footer {
-      background-color: skyblue;
       height: 200px;
     }
   }
