@@ -11,7 +11,7 @@
   export default defineComponent({
     setup(props) {
       return () => (
-        <div class="main">
+        <>
           {router.currentRoute.value.meta.admin ? (
             <AdminLayout v-slots={{ default: () => <RouterView /> }} />
           ) : (
@@ -20,14 +20,10 @@
 
           <TheMask />
           <TheCursor />
-        </div>
+        </>
       );
     },
   });
 </script>
 
-<style lang="scss">
-  .main {
-    min-height: 100vh;
-  }
-</style>
+<style lang="scss"></style>
