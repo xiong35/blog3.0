@@ -6,6 +6,7 @@ async function exec(command) {
   return new Promise((resolve, reject) => {
     child_process.exec(command, (err, stdout, stderr) => {
       console.log(stdout);
+      if (stderr || err) console.log(err, stderr);
       resolve();
     });
   });
