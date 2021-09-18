@@ -12,7 +12,7 @@ git push
 echo -e "\n### switch to master ###\n"
 git switch master
 echo -e "\n### merge DEV into MASTER ###\n"
-git merge dev
+git merge dev --no-ff
 echo -e "\n### push MASTER ###\n"
 git push
 
