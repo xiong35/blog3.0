@@ -3,7 +3,7 @@
   &#xa0;
 </div>
 
-<h1 align="center">BB HUST</h1>
+<h1 align="center">博客 3.0</h1>
  
 <hr>
 
