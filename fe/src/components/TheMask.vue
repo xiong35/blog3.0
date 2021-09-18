@@ -41,7 +41,7 @@
 
     &.displayed {
       display: block;
-      .#{$m}_block {
+      .t-mask_block {
         transition: all 0.8s ease;
       }
     }
