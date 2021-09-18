@@ -4,6 +4,7 @@ import { Component, defineAsyncComponent } from "@vue/runtime-core";
 
 import CError from "./components/CError.vue";
 import CLoading from "./components/CLoading.vue";
+import { isHovering } from "./reactivity/theCursor";
 import { setTitle } from "./utils/setTitle";
 
 const About = defineAsyncComponent({
@@ -96,6 +97,9 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
   setTitle((to.meta.title as string) || "oops");
+});
+router.afterEach(async (to, from) => {
+  isHovering.value = false;
 });
 
 export default router;
