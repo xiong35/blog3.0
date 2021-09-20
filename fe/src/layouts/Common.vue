@@ -1,6 +1,8 @@
 <script lang="tsx">
   import { defineComponent, ref } from "vue";
+  import CBtn from "../components/CBtn.vue";
   import { isHovering } from "../reactivity/theCursor";
+  import { jumpTo } from "../utils/jumpRoute";
 
   export default defineComponent({
     name: "CommonLayout",
@@ -34,7 +36,20 @@
 
             <div class="l-com_main-m">{slots.default && slots.default()}</div>
 
-            <aside class="l-com_main-r"></aside>
+            <aside class="l-com_main-r">
+              <CBtn
+                content="首页"
+                onClick={(e) => jumpTo(e, { name: "home" })}
+              />
+              <CBtn
+                content="文章"
+                onClick={(e) => jumpTo(e, { name: "posts" })}
+              />
+              <CBtn
+                content="关于"
+                onClick={(e) => jumpTo(e, { name: "about" })}
+              />
+            </aside>
           </main>
 
           <footer class="l-com_footer"></footer>
@@ -64,6 +79,7 @@
       align-items: center;
 
       border-bottom: 1px solid $foreground;
+      background-color: $background;
 
       &-logo {
         font-weight: 100;
@@ -110,6 +126,15 @@
       }
       &-m {
         flex: 1 1;
+      }
+
+      &-r {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .c-btn {
+          margin: 20px;
+        }
       }
     }
 
