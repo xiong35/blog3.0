@@ -26,6 +26,7 @@ export const curMaskState = ref<MaskState>("none");
 let timer: number;
 const AnimateDuration = 800;
 export function triggerMaskAnim(pos: Position) {
+  curMaskState.value = "together";
   for (let i = 0; i < masks.length; i++) {
     masks[i] = { ...pos, angle: (Math.random() - 0.5) * 360 * 2 };
   }
@@ -35,8 +36,8 @@ export function triggerMaskAnim(pos: Position) {
 
   const finishSpreading = new Promise<void>((resolve, reject) => {
     // 等下一帧
-    curMaskState.value = "spreading";
     setTimeout(() => {
+      curMaskState.value = "spreading";
       const usedPos: Position[] = [];
       // 设置 mask 的 xy 坐标, 将 masks 随机散列开
       for (let i = 0; i < masks.length; i++) {
@@ -56,7 +57,7 @@ export function triggerMaskAnim(pos: Position) {
     // css 动画结束后可执行下一阶段
     timer = window.setTimeout(() => {
       resolve();
-    }, AnimateDuration);
+    }, AnimateDuration + 50);
   });
 
   return function hide() {
