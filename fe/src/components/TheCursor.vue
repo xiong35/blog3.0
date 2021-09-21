@@ -34,7 +34,7 @@
     );
     position: fixed;
     transition: top 0.03s, left 0.03s, transform 0.3s, box-shadow 0.3s;
-    // mix-blend-mode: difference;
+    mix-blend-mode: difference;
     transform-origin: 0 0;
 
     &.isHovering {
@@ -54,7 +54,7 @@
     }
   }
 
-  // * {
-  //   cursor: none;
-  // }
+  * {
+    cursor: none;
+  }
 </style>
