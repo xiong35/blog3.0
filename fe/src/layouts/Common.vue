@@ -81,6 +81,8 @@
       border-bottom: 1px solid $foreground;
       background-color: $background;
 
+      z-index: 1;
+
       &-logo {
         font-weight: 100;
         font-size: 120%;

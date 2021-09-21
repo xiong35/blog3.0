@@ -23,9 +23,12 @@ export const masks = reactive<MaskBlockData[]>(
 
 export const curMaskState = ref<MaskState>("none");
 
-let timer: number;
+let isAnimating = false;
 const AnimateDuration = 800;
 export function triggerMaskAnim(pos: Position) {
+  if (isAnimating) return;
+  isAnimating = true;
+
   curMaskState.value = "together";
   for (let i = 0; i < masks.length; i++) {
     masks[i] = { ...pos, angle: (Math.random() - 0.5) * 360 * 2 };
@@ -55,13 +58,12 @@ export function triggerMaskAnim(pos: Position) {
     console.log("# theMasks", { masks });
 
     // css 动画结束后可执行下一阶段
-    timer = window.setTimeout(() => {
+    window.setTimeout(() => {
       resolve();
     }, AnimateDuration + 50);
   });
 
   return function hide() {
-    console.log("# theMasks", "hide");
     finishSpreading.then(() => {
       curMaskState.value = "up";
       // 设置他们的 y, 使 masks 往上飞
@@ -71,6 +73,7 @@ export function triggerMaskAnim(pos: Position) {
       }
       setTimeout(() => {
         curMaskState.value = "none";
+        isAnimating = false;
       }, AnimateDuration);
     });
   };
