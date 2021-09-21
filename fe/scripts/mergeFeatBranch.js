@@ -29,22 +29,26 @@ async function readLineSync(hint) {
 }
 
 (async function () {
-  const name = await readLineSync(`Enter name of branch to be merged to DEV: `);
+  try {
+    const name = await readLineSync(
+      `Enter name of branch to be merged to DEV: `
+    );
 
-  console.log(`\n### commit ${name} ###\n`);
-  await exec("git add .");
-  await exec('git commit -m "merge to dev"');
+    console.log(`\n### commit ${name} ###\n`);
+    await exec("git add .");
+    await exec('git commit -m "merge to dev"');
 
-  console.log("\n### switch to DEV ###\n");
-  await exec("git switch dev");
+    console.log("\n### switch to DEV ###\n");
+    await exec("git switch dev");
 
-  console.log(`\n### merge ${name} to DEV ###\n`);
-  await exec(`git merge ${name} --no-ff`);
+    console.log(`\n### merge ${name} to DEV ###\n`);
+    await exec(`git merge ${name} --no-ff`);
 
-  console.log(`\n### delete branch: ${name} ###\n`);
-  await exec(`git branch -D ${name}`);
+    console.log(`\n### delete branch: ${name} ###\n`);
+    await exec(`git branch -D ${name}`);
 
-  console.log("\n\n# # # # # # # # # # # #");
-  console.log("#       ALL DONE      #");
-  console.log("# # # # # # # # # # # #");
+    console.log("\n\n# # # # # # # # # # # #");
+    console.log("#       ALL DONE      #");
+    console.log("# # # # # # # # # # # #");
+  } catch {}
 })();
