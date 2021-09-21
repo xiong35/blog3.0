@@ -6,9 +6,7 @@
     name: "CMask",
     setup(props) {
       return () => (
-        <div
-          class={`t-mask ${curMaskState.value === "none" ? "" : "displayed"}`}
-        >
+        <div class={`t-mask ${curMaskState.value}`}>
           {masks.map((m) => (
             <div
               class="t-mask_block"
@@ -16,7 +14,7 @@
                 top: m.y + "px",
                 left: m.x + "px",
                 transform: `translate(-50%, -50%) rotate(${m.angle}deg) scale(${
-                  curMaskState.value === "together" ? 0.05 : 1
+                  curMaskState.value === "together" ? 0 : 1
                 })`,
               }}
             ></div>
@@ -31,19 +29,29 @@
   @import "../assets/css/variables.scss";
 
   .t-mask {
-    display: none;
     &_block {
       position: fixed;
       width: 19vmin;
       height: 19vmin;
-      background-color: $foreground;
+      background-color: $background;
+      border: 1px solid $primary;
     }
 
-    &.displayed {
-      display: block;
+    &.together {
       .t-mask_block {
         transition: all 0.8s ease;
       }
+    }
+
+    &.spreading,
+    &.up {
+      .t-mask_block {
+        transition: all 0.8s ease;
+      }
+    }
+
+    &.none {
+      display: none;
     }
   }
 </style>
