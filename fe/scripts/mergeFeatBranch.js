@@ -6,7 +6,10 @@ async function exec(command) {
   return new Promise((resolve, reject) => {
     child_process.exec(command, (err, stdout, stderr) => {
       console.log(stdout);
-      if (stderr || err) console.log(err, stderr);
+      if (stderr || err) {
+        console.log(err, stderr);
+        reject();
+      }
       resolve();
     });
   });
@@ -30,7 +33,7 @@ async function readLineSync(hint) {
 
   console.log(`\n### commit ${name} ###\n`);
   await exec("git add .");
-  await exec("git commit -m 'merge to dev'");
+  await exec('git commit -m "merge to dev"');
 
   console.log("\n### switch to DEV ###\n");
   await exec("git switch dev");
