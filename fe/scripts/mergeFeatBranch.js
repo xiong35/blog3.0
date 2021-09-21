@@ -6,6 +6,7 @@ async function exec(command) {
   return new Promise((resolve, reject) => {
     child_process.exec(command, (err, stdout, stderr) => {
       console.log(stdout);
+      if (stderr || err) console.log(err, stderr);
       resolve();
     });
   });
@@ -26,6 +27,10 @@ async function readLineSync(hint) {
 
 (async function () {
   const name = await readLineSync(`Enter name of branch to be merged to DEV: `);
+
+  console.log(`\n### commit ${name} ###\n`);
+  await exec("git add .");
+  await exec("git commit -m 'merge to dev'");
 
   console.log("\n### switch to DEV ###\n");
   await exec("git switch dev");

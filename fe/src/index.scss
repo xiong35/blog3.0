@@ -22,10 +22,26 @@
     border-radius: 0;
     background-color: $foreground;
   }
+
+  color: $foreground;
 }
 
 :root {
   font-family: "PingFang SC", "Source Han Sans SC", "Helvetica Neue", Helvetica,
     Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei",
     "WenQuanYi Micro Hei", sans-serif;
+}
+
+.u-only-small {
+  @media (min-width: 768.321px) {
+    display: none;
+  }
+}
+.u-only-big {
+  @media (max-width: 768.321px) {
+    display: none;
+  }
+}
+.u-spacer {
+  flex: 1;
 }
