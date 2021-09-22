@@ -12,11 +12,11 @@ async function exec(command) {
   });
 }
 
-const readline = require("readline").createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
 async function readLineSync(hint) {
+  const readline = require("readline").createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
   return new Promise((resolve, reject) => {
     readline.question(hint, (res) => {
       resolve(res);
