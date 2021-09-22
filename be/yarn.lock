@@ -1661,10 +1661,25 @@ mongodb@4.1.1:
   optionalDependencies:
     saslprep "^1.0.0"
 
-mongoose@*, mongoose@^6.0.5:
+mongoose@*:
   version "6.0.5"
   resolved "https://registry.nlark.com/mongoose/download/mongoose-6.0.5.tgz#42648005d13b49261c757607d1f23761b59a610d"
   integrity sha1-QmSABdE7SSYcdXYH0fI3YbWaYQ0=
+  dependencies:
+    bson "^4.2.2"
+    kareem "2.3.2"
+    mongodb "4.1.1"
+    mpath "0.8.4"
+    mquery "4.0.0"
+    ms "2.1.2"
+    regexp-clone "1.0.0"
+    sift "13.5.2"
+    sliced "1.0.1"
+
+mongoose@^6.0.7:
+  version "6.0.7"
+  resolved "https://registry.nlark.com/mongoose/download/mongoose-6.0.7.tgz?cache=0&sync_timestamp=1632164503367&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fmongoose%2Fdownload%2Fmongoose-6.0.7.tgz#a933743a1e2a67519f02c58b264e6825beb9b6aa"
+  integrity sha1-qTN0Oh4qZ1GfAsWLJk5oJb65tqo=
   dependencies:
     bson "^4.2.2"
     kareem "2.3.2"

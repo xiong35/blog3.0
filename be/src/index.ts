@@ -5,7 +5,10 @@ import * as logger from "koa-logger";
 import * as cors from "@koa/cors";
 
 import useHandleError from "./middleware/useHandleError";
+import { setupMongo } from "./models";
 import router from "./router";
+
+setupMongo();
 
 const app = new Koa<
   { isKnownError: Boolean },
