@@ -9,7 +9,7 @@ async function exec(command) {
     child_process.exec(command, (err, stdout, stderr) => {
       if (stderr || err) {
         console.log({ err }, { stderr });
-        return reject();
+        return reject(err || stderr);
       }
       console.log(stdout);
       resolve();
@@ -33,11 +33,13 @@ async function readLineSync(hint) {
 (async function () {
   const name = await readLineSync(`Enter name of branch to be merged to DEV: `);
 
-  console.log(`\n### commit ${name} ###\n`);
-  await exec("git add .").catch((e) => console.log("# error"));
-  await exec('git commit -m "merge to dev"').catch((e) =>
-    console.log("# error")
-  );
+  try {
+    console.log(`\n### commit ${name} ###\n`);
+    await exec("git add .").catch((e) => e);
+    await exec('git commit -m "merge to dev"').catch((e) =>
+      console.log("### already committed")
+    );
+  } catch (e) {}
 
   console.log("\n### switch to DEV ###\n");
   await exec("git switch dev");
