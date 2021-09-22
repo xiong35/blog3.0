@@ -8,13 +8,7 @@ const router = new Router();
 
 router
   .all("/test", t)
-  .use("/post", postRouter.routes(), postRouter.allowedMethods())
-  .use("/tag", tagRouter.routes(), postRouter.allowedMethods());
-// .use(
-//   "/game",
-//   UseAuth(),
-//   gameRouter.routes(),
-//   gameRouter.allowedMethods()
-// );
+  .use("/post", postRouter.routes())
+  .use("/tag", tagRouter.routes());
 
 export default router;

@@ -23,8 +23,7 @@ app
 
   .use(KoaBody())
 
-  .use(router.routes())
-  .use(router.allowedMethods());
+  .use(router.routes());
 
 app.listen(8080);
 

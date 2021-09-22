@@ -16,10 +16,3 @@ postRouter
   .post("/", createPost)
   .put("/:id", updatePost)
   .delete("/:id", deletePost);
-// .use("/room", roomRouter.routes(), roomRouter.allowedMethods())
-// .use(
-//   "/game",
-//   UseAuth(),
-//   gameRouter.routes(),
-//   gameRouter.allowedMethods()
-// );
