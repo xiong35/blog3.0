@@ -1,11 +1,28 @@
 import { Middleware } from "koa";
 
+import { createError } from "../../middleware/useHandleError";
 import { CreatePostReq, HttpRes } from "../../models";
 import { Post } from "../../models/post";
 import { Tag } from "../../models/tag";
 
 export const createPost: Middleware = async (ctx) => {
   const req = ctx.request.body as CreatePostReq;
+
+  if (!req.content)
+    createError({
+      status: 400,
+      msg: "文章内容为空",
+    });
+  if (!req.digest)
+    createError({
+      status: 400,
+      msg: "文章摘要为空",
+    });
+  if (!req.title)
+    createError({
+      status: 400,
+      msg: "文章标题为空",
+    });
 
   // 找到文章 tag 中已有的部分
   const existingTags = await Tag.find({
