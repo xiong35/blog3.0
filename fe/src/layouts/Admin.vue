@@ -17,5 +17,8 @@
   .l-admin {
     background-color: $background;
     min-height: 100vh;
+    * {
+      cursor: unset;
+    }
   }
 </style>

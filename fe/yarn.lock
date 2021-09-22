@@ -2949,7 +2949,7 @@ postcss@^8.1.10, postcss@^8.3.6:
     nanoid "^3.1.23"
     source-map-js "^0.6.2"
 
-prismjs@^1.13.0, prismjs@^1.23.0:
+prismjs@^1.13.0, prismjs@^1.23.0, prismjs@^1.25.0:
   version "1.25.0"
   resolved "https://registry.nlark.com/prismjs/download/prismjs-1.25.0.tgz?cache=0&sync_timestamp=1631809405776&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fprismjs%2Fdownload%2Fprismjs-1.25.0.tgz#6f822df1bdad965734b310b315a23315cf999756"
   integrity sha1-b4It8b2tllc0sxCzFaIzFc+Zl1Y=

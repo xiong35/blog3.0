@@ -11,7 +11,7 @@
     "@kangc/v-md-editor": "^2.2.6",
     "@vitejs/plugin-vue-jsx": "^1.1.8",
     "axios": "^0.21.1",
-    "prismjs": "^1.23.0",
+    "prismjs": "^1.25.0",
     "sha256": "^0.2.0",
     "vue": "^3.0.4",
     "vue-router": "^4.0.5"
