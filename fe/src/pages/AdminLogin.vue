@@ -1,22 +1,28 @@
 <script lang="tsx">
   import { defineComponent, ref } from "vue";
   import CBtn from "../components/CBtn.vue";
+  import { login } from "../network/user/login";
   import router from "../router";
 
   export default defineComponent({
     name: "AdminLogin",
     setup(props) {
+      const password = ref("");
+
+      async function doLogin() {
+        const success = await login(password.value);
+        if (success) router.push({ name: "admin-compose" });
+      }
+
       return () => (
         <div class="pa-login">
           <input
             type="password"
             class="pa-login_input"
             placeholder="请输入密码"
+            v-model={password.value}
           />
-          <CBtn
-            content="登录"
-            onClick={() => router.push({ name: "admin-compose" })}
-          />
+          <CBtn content="登录" onClick={doLogin} />
         </div>
       );
     },

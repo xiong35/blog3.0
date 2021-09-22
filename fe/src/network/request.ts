@@ -78,6 +78,9 @@ export async function request<T>(
           }
 
           resolve({ data: null, status: 400, msg: errStr });
+        })
+        .finally(() => {
+          requestSet.delete(key);
         });
     });
   }

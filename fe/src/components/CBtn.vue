@@ -9,7 +9,7 @@
         type: String,
       },
       onClick: {
-        type: Object as () => (e: MouseEvent) => void,
+        type: (Function as unknown) as () => (e: MouseEvent) => void,
         required: true,
       },
     },
