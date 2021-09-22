@@ -1,5 +1,6 @@
 import { IMiddleware } from "koa-router";
 
+import { createError } from "../../middleware/useHandleError";
 import { GetPostDetailRes } from "../../models";
 import { Post, PostModel } from "../../models/post";
 
@@ -11,6 +12,8 @@ export const getPostDetail: IMiddleware = async (ctx) => {
   const post: PostModel | null = await Post.findById(req.id)
     .exec()
     .catch((e) => null);
+
+  if (!post) createError({ status: 404, msg: "找不到文章" });
 
   post.visited++;
   post.save();

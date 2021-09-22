@@ -5,3 +5,4 @@ export type HttpRes<T = unknown> = {
 };
 
 export * from "./post";
+export * from "./tag";
