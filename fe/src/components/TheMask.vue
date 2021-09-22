@@ -35,6 +35,8 @@
       height: 19vmin;
       background-color: $background;
       border: 1px solid $primary;
+
+      z-index: 8;
     }
 
     &.together {

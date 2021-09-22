@@ -12,11 +12,11 @@ async function exec(command) {
   });
 }
 
-const readline = require("readline").createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
 async function readLineSync(hint) {
+  const readline = require("readline").createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
   return new Promise((resolve, reject) => {
     readline.question(hint, (res) => {
       resolve(res);
@@ -26,11 +26,10 @@ async function readLineSync(hint) {
 }
 
 (async function () {
-  const name = await readLineSync(`Enter name of branch to be merged to DEV: `);
+  const ans = await readLineSync(`Have you committed? [Y/n]`);
+  if (ans !== "Y" && ans !== "y") return;
 
-  console.log(`\n### commit ${name} ###\n`);
-  await exec("git add .");
-  await exec("git commit -m 'merge to dev'");
+  const name = await readLineSync(`Enter name of branch to be merged to DEV: `);
 
   console.log("\n### switch to DEV ###\n");
   await exec("git switch dev");

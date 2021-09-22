@@ -37,6 +37,8 @@
     mix-blend-mode: difference;
     transform-origin: 0 0;
 
+    z-index: 9;
+
     &.isHovering {
       transform: rotateY(180deg);
       animation: shine 0.6s;
@@ -54,7 +56,7 @@
     }
   }
 
-  * {
-    cursor: none;
-  }
+  // * {
+  //   cursor: none;
+  // }
 </style>
