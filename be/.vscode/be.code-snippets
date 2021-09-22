@@ -1,0 +1,24 @@
+{
+	"create a http handler": {
+		"scope": "typescript",
+		"prefix": "h#",
+		"body": [
+			"import { Middleware } from \"koa\";",
+			"import { HttpRes } from \"../../models\";",
+			"",
+			"export const ${TM_FILENAME/(.*)\\..+$/$1/}: Middleware = async (ctx) => {",
+			"  const req = ctx.request.body as $3;",
+			"",
+			"  const ret: HttpRes = {",
+			"    status: 200,",
+			"    msg: \"ok\",",
+			"    data: {}",
+			"  };",
+			"",
+			"  ctx.body = ret;",
+			"};",
+			""
+		],
+		"description": "create a http handler"
+	},
+}

@@ -15,3 +15,5 @@ export function setupMongo() {
     });
   });
 }
+
+export * from "../../../fe/shared/http";
