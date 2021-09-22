@@ -7,6 +7,7 @@ import { Tag } from "../../models/tag";
 
 export const createPost: Middleware = async (ctx) => {
   const req = ctx.request.body as CreatePostReq;
+  req.tagNames = req.tagNames.map((t) => t.trim()).filter((t) => t);
 
   if (!req.content)
     createError({
@@ -25,11 +26,12 @@ export const createPost: Middleware = async (ctx) => {
     });
 
   // 找到文章 tag 中已有的部分
-  const existingTags = await Tag.find({
-    name: {
-      $in: req.tagNames,
-    },
-  });
+  const existingTags =
+    (await Tag.find({
+      name: {
+        $in: req.tagNames,
+      },
+    })) || [];
 
   // 找到新添加的 tag
   const newTagNames = req.tagNames.filter(
@@ -53,7 +55,7 @@ export const createPost: Middleware = async (ctx) => {
   bulk
     .find({
       name: {
-        $in: req.tagNames,
+        $in: existingTags.map((t) => t.name),
       },
     })
     .update({ $inc: { count: 1 } })
