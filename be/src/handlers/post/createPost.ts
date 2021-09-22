@@ -1,9 +1,8 @@
 import { Middleware } from "koa";
-import { constants } from "perf_hooks";
-import { Post } from "src/models/post";
-import { Tag } from "src/models/tag";
 
 import { CreatePostReq, HttpRes } from "../../models";
+import { Post } from "../../models/post";
+import { Tag } from "../../models/tag";
 
 export const createPost: Middleware = async (ctx) => {
   const req = ctx.request.body as CreatePostReq;
@@ -13,7 +12,7 @@ export const createPost: Middleware = async (ctx) => {
     name: {
       $in: req.tagNames,
     },
-  }).exec();
+  });
 
   // 找到新添加的 tag
   const newTagNames = req.tagNames.filter(
@@ -37,7 +36,7 @@ export const createPost: Middleware = async (ctx) => {
   const ret: HttpRes = {
     status: 200,
     msg: "ok",
-    data: {},
+    data: { id: newPost.id },
   };
 
   ctx.body = ret;
