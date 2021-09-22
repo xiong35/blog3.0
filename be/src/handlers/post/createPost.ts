@@ -48,6 +48,19 @@ export const createPost: Middleware = async (ctx) => {
   // 设置文章的 tags
   newPost.tags = [...existingTags, ...newTags];
 
+  // 设置用过的每个 tag 的使用次数 ++
+  const bulk = Tag.collection.initializeUnorderedBulkOp();
+  bulk
+    .find({
+      name: {
+        $in: req.tagNames,
+      },
+    })
+    .update({ $inc: { count: 1 } })
+    .execute();
+
+  console.log("# createPost", newPost);
+
   await newPost.save();
 
   const ret: HttpRes = {
