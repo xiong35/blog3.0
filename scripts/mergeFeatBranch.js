@@ -32,14 +32,8 @@ async function readLineSync(hint) {
 
 (async function () {
   const name = await readLineSync(`Enter name of branch to be merged to DEV: `);
-
-  try {
-    console.log(`\n### commit ${name} ###\n`);
-    await exec("git add .").catch((e) => e);
-    await exec('git commit -m "merge to dev"').catch((e) =>
-      console.log("### already committed")
-    );
-  } catch (e) {}
+  const ans = await readLineSync(`Have you committed? [Y/n]`);
+  if (ans.toLowerCase() !== "y") return;
 
   console.log("\n### switch to DEV ###\n");
   await exec("git switch dev");
