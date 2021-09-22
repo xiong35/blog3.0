@@ -5,7 +5,8 @@ export type Post = PostBrief & {
 };
 
 export type PostBrief = {
-  id: string;
+  _id: string;
+  visited: number;
   title: string;
   digest: string;
   tags: Tag[];

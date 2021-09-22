@@ -1,4 +1,5 @@
 export type Tag = {
   name: string;
-  id: string;
+  _id: string;
+  count: number;
 };

@@ -1,6 +1,6 @@
 import * as Router from "koa-router";
-import { t } from "src/handlers/t";
 
+import { t } from "../handlers/t";
 import { postRouter } from "./post";
 
 const router = new Router();
