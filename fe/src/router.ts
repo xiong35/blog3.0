@@ -12,8 +12,13 @@ const About = defineAsyncComponent({
   errorComponent: CError,
   loadingComponent: CLoading,
 });
-const Admin = defineAsyncComponent({
-  loader: () => import("./pages/Admin.vue"),
+const AdminCompose = defineAsyncComponent({
+  loader: () => import("./pages/AdminCompose.vue"),
+  errorComponent: CError,
+  loadingComponent: CLoading,
+});
+const AdminLogin = defineAsyncComponent({
+  loader: () => import("./pages/AdminLogin.vue"),
   errorComponent: CError,
   loadingComponent: CLoading,
 });
@@ -56,11 +61,20 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
-    path: "/admin",
-    name: "admin",
-    component: Admin,
+    path: "/admin/compose",
+    name: "admin-compose",
+    component: AdminCompose,
     meta: {
-      title: "管理",
+      title: "发表",
+      admin: true,
+    },
+  },
+  {
+    path: "/admin/login",
+    name: "admin-login",
+    component: AdminLogin,
+    meta: {
+      title: "登录后台",
       admin: true,
     },
   },

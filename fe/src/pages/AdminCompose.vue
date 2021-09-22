@@ -2,14 +2,14 @@
   import { defineComponent, ref } from "vue";
 
   export default defineComponent({
-    name: "Admin",
+    name: "AdminCompose",
     setup(props) {
-      return () => <div class="p-admin">Admin</div>;
+      return () => <div class="pa-compose">AdminCompose</div>;
     },
   });
 </script>
 
 <style lang="scss">
-  .p-admin {
+  .pa-compose {
   }
 </style>

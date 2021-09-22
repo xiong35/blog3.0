@@ -37,7 +37,7 @@
   .c-btn {
     font-size: 1rem;
     height: 2.4em;
-    display: inline;
+    display: inline-block;
     position: relative;
 
     &::before,
