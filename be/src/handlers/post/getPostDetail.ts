@@ -12,6 +12,9 @@ export const getPostDetail: IMiddleware = async (ctx) => {
     .exec()
     .catch((e) => null);
 
+  post.visited++;
+  post.save();
+
   console.log("# getPostDetail", { post });
 
   const ret: GetPostDetailRes = {

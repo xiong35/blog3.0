@@ -9,6 +9,7 @@ const postSchema = new Schema(
     digest: String,
     content: String,
     tags: { type: [_tagSchema], default: () => [] },
+    visited: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
