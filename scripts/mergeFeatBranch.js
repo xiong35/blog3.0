@@ -2,12 +2,15 @@
 
 const child_process = require("child_process");
 
+// TODO change script
+
 async function exec(command) {
   return new Promise((resolve, reject) => {
     child_process.exec(command, (err, stdout, stderr) => {
       console.log(stdout);
       if (stderr || err) {
-        console.log(err, stderr);
+        console.log({ err }, { stderr });
+        reject();
       }
       resolve();
     });
@@ -31,8 +34,10 @@ async function readLineSync(hint) {
   const name = await readLineSync(`Enter name of branch to be merged to DEV: `);
 
   console.log(`\n### commit ${name} ###\n`);
-  await exec("git add .");
-  await exec('git commit -m "merge to dev"');
+  await exec("git add .").catch((e) => console.log("# error"));
+  await exec('git commit -m "merge to dev"').catch((e) =>
+    console.log("# error")
+  );
 
   console.log("\n### switch to DEV ###\n");
   await exec("git switch dev");
