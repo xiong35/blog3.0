@@ -8,7 +8,6 @@ async function exec(command) {
       console.log(stdout);
       if (stderr || err) {
         console.log(err, stderr);
-        reject();
       }
       resolve();
     });
@@ -31,11 +30,9 @@ async function readLineSync(hint) {
 (async function () {
   const name = await readLineSync(`Enter name of branch to be merged to DEV: `);
 
-  try {
-    console.log(`\n### commit ${name} ###\n`);
-    await exec("git add .");
-    await exec('git commit -m "merge to dev"');
-  } catch {}
+  console.log(`\n### commit ${name} ###\n`);
+  await exec("git add .");
+  await exec('git commit -m "merge to dev"');
 
   console.log("\n### switch to DEV ###\n");
   await exec("git switch dev");
