@@ -7,11 +7,11 @@ const child_process = require("child_process");
 async function exec(command) {
   return new Promise((resolve, reject) => {
     child_process.exec(command, (err, stdout, stderr) => {
-      console.log(stdout);
       if (stderr || err) {
         console.log({ err }, { stderr });
-        reject();
+        return reject();
       }
+      console.log(stdout);
       resolve();
     });
   });
