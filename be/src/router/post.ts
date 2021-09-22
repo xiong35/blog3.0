@@ -1,10 +1,11 @@
 import * as Router from "koa-router";
-import { createPost } from "src/handlers/post/createPost";
-import { t } from "src/handlers/t";
+
+import { createPost } from "../handlers/post/createPost";
+import { getPostDetail } from "../handlers/post/getPostDetail";
 
 export const postRouter = new Router();
 
-postRouter.post("/create", createPost);
+postRouter.post("/", createPost).get("/:id", getPostDetail);
 // .use("/room", roomRouter.routes(), roomRouter.allowedMethods())
 // .use(
 //   "/game",
