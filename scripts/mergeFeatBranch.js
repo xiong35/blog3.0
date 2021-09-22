@@ -2,16 +2,11 @@
 
 const child_process = require("child_process");
 
-// TODO change script
-
 async function exec(command) {
   return new Promise((resolve, reject) => {
     child_process.exec(command, (err, stdout, stderr) => {
-      if (stderr || err) {
-        console.log({ err }, { stderr });
-        return reject(err || stderr);
-      }
       console.log(stdout);
+      if (stderr || err) console.log(err, stderr);
       resolve();
     });
   });
@@ -33,6 +28,7 @@ async function readLineSync(hint) {
 (async function () {
   const ans = await readLineSync(`Have you committed? [Y/n]`);
   if (ans !== "Y" && ans !== "y") return;
+
   const name = await readLineSync(`Enter name of branch to be merged to DEV: `);
 
   console.log("\n### switch to DEV ###\n");
