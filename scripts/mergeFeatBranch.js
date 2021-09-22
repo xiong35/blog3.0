@@ -8,7 +8,7 @@ async function exec(command) {
       console.log(stdout);
       if (stderr || err) {
         console.log(err, stderr);
-        reject();
+        throw new Error(err);
       }
       resolve();
     });
