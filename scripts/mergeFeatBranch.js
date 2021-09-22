@@ -35,8 +35,8 @@ async function readLineSync(hint) {
     );
 
     console.log(`\n### commit ${name} ###\n`);
-    await exec("git add .");
-    await exec('git commit -m "merge to dev"');
+    await exec("git add .").catch();
+    await exec('git commit -m "merge to dev"').catch();
 
     console.log("\n### switch to DEV ###\n");
     await exec("git switch dev");
