@@ -31,9 +31,9 @@ async function readLineSync(hint) {
 }
 
 (async function () {
-  const name = await readLineSync(`Enter name of branch to be merged to DEV: `);
   const ans = await readLineSync(`Have you committed? [Y/n]`);
-  if (ans.toLowerCase() !== "y") return;
+  if (ans !== "Y" && ans !== "y") return;
+  const name = await readLineSync(`Enter name of branch to be merged to DEV: `);
 
   console.log("\n### switch to DEV ###\n");
   await exec("git switch dev");
