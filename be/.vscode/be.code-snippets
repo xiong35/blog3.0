@@ -3,10 +3,10 @@
 		"scope": "typescript",
 		"prefix": "h#",
 		"body": [
-			"import { Middleware } from \"koa\";",
+			"import { IMiddleware } from \"koa-router\";",
 			"import { HttpRes } from \"../../models\";",
 			"",
-			"export const ${TM_FILENAME/(.*)\\..+$/$1/}: Middleware = async (ctx) => {",
+			"export const ${TM_FILENAME/(.*)\\..+$/$1/}: IMiddleware = async (ctx) => {",
 			"  const req = ctx.request.body as $3;",
 			"",
 			"  const ret: HttpRes = {",
