@@ -57,5 +57,5 @@ const toReplace: { reg: ReplaceParam[0]; replace: ReplaceParam[1] }[] = [
 export function generateDigest(content: string): string {
   return toReplace
     .reduce((c, r) => c.replace(r.reg, r.replace), content)
-    .slice(0, 100);
+    .slice(0, 200);
 }
