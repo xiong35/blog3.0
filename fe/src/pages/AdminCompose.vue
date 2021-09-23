@@ -55,7 +55,7 @@
               ))}
               <CTag
                 class="pa-compose_wrapper-tags-tag"
-                name="添加"
+                name="添加+"
                 onClick={() => {
                   const name = prompt("输入新标签的名字：");
                   if (!name) return;
