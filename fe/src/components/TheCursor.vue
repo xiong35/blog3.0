@@ -37,7 +37,7 @@
     mix-blend-mode: difference;
     transform-origin: 0 0;
 
-    z-index: 9;
+    z-index: 90;
 
     &.isHovering {
       transform: rotateY(180deg);

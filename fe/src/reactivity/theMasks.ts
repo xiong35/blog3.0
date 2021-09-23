@@ -10,7 +10,7 @@ type MaskBlockData = Position & {
   angle: number;
 };
 
-const maskBlockNum = 111;
+const maskBlockNum = 150;
 const DEFAULT: MaskBlockData = {
   x: 0,
   y: 0,
@@ -34,8 +34,8 @@ export function triggerMaskAnim(pos: Position) {
     masks[i] = { ...pos, angle: (Math.random() - 0.5) * 360 * 2 };
   }
 
-  const w_x = document.body.clientWidth;
-  const w_y = document.body.clientHeight;
+  const w_x = window.innerWidth;
+  const w_y = window.innerHeight;
 
   const finishSpreading = new Promise<void>((resolve, reject) => {
     // 等下一帧
@@ -79,7 +79,7 @@ export function triggerMaskAnim(pos: Position) {
   };
 }
 
-const THRESHOLD = 50;
+const THRESHOLD = 30;
 function getRandPos(usedPos: Position[], x: number, y: number): Position {
   let tryTime = 10;
 

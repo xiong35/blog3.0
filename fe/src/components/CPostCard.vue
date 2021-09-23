@@ -3,6 +3,7 @@
   import { PostBrief } from "../../shared/models/post";
   import { isHovering } from "../reactivity/theCursor";
   import { dateFormat } from "../utils/dateFormat";
+  import { jumpTo } from "../utils/jumpRoute";
   import CTag from "./CTag.vue";
 
   export default defineComponent({
@@ -17,6 +18,9 @@
           class="c-postcard"
           onMouseenter={() => (isHovering.value = true)}
           onMouseleave={() => (isHovering.value = false)}
+          onClick={(e) =>
+            jumpTo(e, { name: "post-detail", params: { id: post._id } })
+          }
         >
           <div class="c-postcard_content">
             <title class="c-postcard_title" data-text={post.title}>
