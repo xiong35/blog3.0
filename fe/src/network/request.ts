@@ -47,7 +47,7 @@ export async function request<T>(
       instance(config)
         .then((res: AxiosResponse<HttpRes<T>>) => {
           // http 出错 status 不是200, 会在 catch 中做处理
-          if (res.data) {
+          if (res.data && res.data.status) {
             if (res.data.status !== 200) {
               alert(res.data.msg);
               resolve({ ...res.data, data: null });
