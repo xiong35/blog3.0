@@ -81,6 +81,7 @@
 
   .l-com {
     $header-h: 48px;
+    $footer-h: 200px;
     $max-w: 1100px;
     background-color: $background;
 
@@ -140,7 +141,7 @@
 
     &_main {
       padding-top: $header-h;
-      min-height: 100vh;
+      min-height: calc(100vh - #{$header-h} - #{$footer-h});
       display: flex;
       max-width: $max-w;
       margin: auto;

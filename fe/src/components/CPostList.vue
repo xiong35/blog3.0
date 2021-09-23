@@ -13,6 +13,7 @@
   import { PER_PAGE } from "../network/request";
   import router from "../router";
   import CBtn from "./CBtn.vue";
+  import CEmpty from "./CEmpty.vue";
   import CPostCard from "./CPostCard.vue";
 
   export default defineComponent({
@@ -94,13 +95,19 @@
       return () => (
         <div class="c-post-list">
           <div class="c-post-list_posts">
-            {posts.value.map((post) => (
-              <CPostCard
-                class="c-post-list_posts-postcard"
-                post={post}
-                key={post._id}
-              />
-            ))}
+            {posts.value.length ? (
+              <>
+                {posts.value.map((post) => (
+                  <CPostCard
+                    class="c-post-list_posts-postcard"
+                    post={post}
+                    key={post._id}
+                  />
+                ))}
+              </>
+            ) : (
+              <CEmpty style={{ margin: "10vh auto" }} />
+            )}
           </div>
           <div class="c-post-list_pager">
             <CBtn
