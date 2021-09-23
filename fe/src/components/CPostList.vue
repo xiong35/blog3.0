@@ -85,6 +85,16 @@
           </div>
           <div class="c-post-list_pager">
             <CBtn
+              content="第 0 页"
+              onClick={() => {
+                fromDate.value = 0;
+                toDate.value = Date.now();
+                currentPage.value = 0;
+                getPosts(true, true);
+              }}
+            />
+            <div class="u-spacer"></div>
+            <CBtn
               content="上一页"
               disabled={currentPage.value === 0}
               onClick={() => getPosts(false)}
@@ -94,7 +104,6 @@
               disabled={currentPage.value === maxPageNum.value}
               onClick={() => getPosts(true)}
             />
-            {currentPage.value}
           </div>
         </div>
       );
@@ -109,6 +118,17 @@
     &_posts {
       &-postcard {
         margin: 0.5rem 0;
+      }
+    }
+
+    &_pager {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+      margin: 0 -1rem;
+
+      .c-btn {
+        margin: 0 1rem;
       }
     }
   }
