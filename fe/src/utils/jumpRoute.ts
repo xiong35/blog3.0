@@ -14,5 +14,6 @@ export function jumpTo(e: MouseEvent, opts: RouteLocationRaw) {
   const close = triggerMaskAnim({ x: e.clientX, y: e.clientY });
   setTimeout(() => {
     router.push(opts).then(close);
+    console.log("# jumpRoute");
   }, 800);
 }

@@ -1,5 +1,12 @@
 <script lang="tsx">
-  import { computed, defineComponent, ref, watch, watchEffect } from "vue";
+  import {
+    computed,
+    defineComponent,
+    ref,
+    toRef,
+    watch,
+    watchEffect,
+  } from "vue";
   import { GetPostsReq } from "../../shared/http";
   import { PostBrief } from "../../shared/models/post";
   import { getAllPosts } from "../network/post/getAllPosts";
@@ -14,9 +21,20 @@
       fromDate: Number,
       toDate: Number,
       page: Number,
+      kw: String,
     },
     setup(props) {
       const posts = ref<PostBrief[]>([]);
+
+      const kw = toRef(props, "kw");
+      watch(kw, () => {
+        posts.value = [];
+        currentPage.value = 0;
+        maxPageNum.value = 9999;
+        fromDate.value = 0;
+        toDate.value = Date.now();
+        getPosts(true, true);
+      });
 
       const currentPage = ref(-9999);
       const maxPageNum = ref(9999);
@@ -24,12 +42,13 @@
       const fromDate = ref(props.fromDate || 0);
       const toDate = ref(props.toDate || Date.now());
       watchEffect(() => {
-        // router.currentRoute.value.query[]
         history.pushState(
           {},
           "",
           window.location.href.split("?")[0] +
-            `?fromDate=${fromDate.value}&toDate=${toDate.value}`
+            `?fromDate=${fromDate.value}&toDate=${toDate.value}${
+              kw.value ? "&kw=" + kw.value : ""
+            }`
         );
       });
 
@@ -48,7 +67,7 @@
           query.from = fromDate.value;
         }
 
-        const newPosts = await getAllPosts(query);
+        const newPosts = await getAllPosts({ ...query, kw: kw.value });
 
         if (newPosts && newPosts.length) {
           posts.value = newPosts;
@@ -93,7 +112,7 @@
                 getPosts(true, true);
               }}
             />
-            <div class="u-spacer"></div>
+            <div class="u-spacer"> </div>
             <CBtn
               content="上一页"
               disabled={currentPage.value === 0}

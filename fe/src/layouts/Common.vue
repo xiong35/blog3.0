@@ -2,12 +2,15 @@
   import { defineComponent, ref } from "vue";
   import CBtn from "../components/CBtn.vue";
   import { isHovering } from "../reactivity/theCursor";
+  import router from "../router";
   import { jumpTo } from "../utils/jumpRoute";
 
   // TODO limit max width
   export default defineComponent({
     name: "CommonLayout",
     setup(props, { slots }) {
+      const kw = ref("");
+
       return () => (
         <div class="l-com">
           <header class="l-com_header">
@@ -18,12 +21,22 @@
               <div class="u-spacer u-only-big"></div>
 
               <div class="l-com_header-searchbar">
-                <input class="l-com_header-searchbar-input" />
+                <input
+                  v-model={kw.value}
+                  class="l-com_header-searchbar-input"
+                  onKeydown={(e) => {
+                    if (e.key === "Enter")
+                      router.push({ name: "posts", query: { kw: kw.value } });
+                  }}
+                />
                 <img
                   class="l-com_header-searchbar-icon"
                   src="/src/assets/img/search.svg"
                   onMouseleave={() => (isHovering.value = false)}
                   onMouseenter={() => (isHovering.value = true)}
+                  onClick={(e) =>
+                    jumpTo(e, { name: "posts", query: { kw: kw.value } })
+                  }
                 />
               </div>
 

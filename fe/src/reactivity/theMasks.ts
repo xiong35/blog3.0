@@ -99,12 +99,9 @@ function getRandPos(usedPos: Position[], x: number, y: number): Position {
     );
 
     if (!hasSimilar) {
-      console.log("# theMasks", tryTime);
       return retPos;
     }
   }
-
-  console.log("# theMasks", "nowhere");
 
   return retPos;
 }
