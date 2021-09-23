@@ -9,7 +9,7 @@
 
       return () => (
         <div
-          class={`t-cursor ${isHovering.value ? "isHovering" : ""}`}
+          class={`u-only-big t-cursor ${isHovering.value ? "isHovering" : ""}`}
           style={{ top: position.y + 2 + "px", left: position.x + 2 + "px" }}
         ></div>
       );
@@ -56,7 +56,9 @@
     }
   }
 
-  // * {
-  //   cursor: none;
-  // }
+  @media (min-width: 768.321px) {
+    * {
+      cursor: none;
+    }
+  }
 </style>

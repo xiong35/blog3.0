@@ -4,6 +4,7 @@
   import { isHovering } from "../reactivity/theCursor";
   import { jumpTo } from "../utils/jumpRoute";
 
+  // TODO limit max width
   export default defineComponent({
     name: "CommonLayout",
     setup(props, { slots }) {

@@ -9,7 +9,7 @@
         type: String,
       },
       onClick: {
-        type: Object as () => (e: MouseEvent) => void,
+        type: (Function as unknown) as () => (e: MouseEvent) => void,
         required: true,
       },
     },
@@ -37,7 +37,7 @@
   .c-btn {
     font-size: 1rem;
     height: 2.4em;
-    display: inline;
+    display: inline-block;
     position: relative;
 
     &::before,

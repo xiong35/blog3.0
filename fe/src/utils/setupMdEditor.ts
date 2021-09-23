@@ -15,9 +15,6 @@ import createKatexPlugin from "@kangc/v-md-editor/lib/plugins/katex/cdn";
 import createTodoListPlugin from "@kangc/v-md-editor/lib/plugins/todo-list/index";
 import "@kangc/v-md-editor/lib/plugins/todo-list/todo-list.css";
 
-// 显示代码行数的插件
-import createLineNumbertPlugin from "@kangc/v-md-editor/lib/plugins/line-number/index";
-
 // 一键复制代码的插件
 import createCopyCodePlugin from "@kangc/v-md-editor/lib/plugins/copy-code/index";
 import "@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css";
@@ -52,11 +49,12 @@ VueMarkdownEditor.use(vuepressTheme, {
     vue: "html",
     react: "jsx",
   },
+  Prism,
 });
+
 VueMarkdownEditor.use(createEmojiPlugin()); // 支持 :emoji: 的插件
 VueMarkdownEditor.use(createKatexPlugin()); // 支持 katex 的插件(在 index.html 中引入了相关依赖)
 VueMarkdownEditor.use(createTodoListPlugin()); // 支持 todolist 的插件
-// VueMarkdownEditor.use(createLineNumbertPlugin()); // 显示代码行数的插件
 VueMarkdownEditor.use(createCopyCodePlugin()); // 一键复制代码的插件
 
 // 扩展 xss 规则, 防止 style 注入

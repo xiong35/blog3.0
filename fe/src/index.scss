@@ -19,7 +19,7 @@
   }
   // 定义滑块：内阴影+圆角
   &::-webkit-scrollbar-thumb {
-    border-radius: 0;
+    border-radius: 999px;
     background-color: $foreground;
   }
 

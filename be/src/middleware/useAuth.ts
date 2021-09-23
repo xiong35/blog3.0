@@ -1,9 +1,10 @@
 import { IMiddleware } from "koa-router";
 import * as sha256 from "sha256";
 
+import { HttpRes } from "../models";
 import { createError } from "./useHandleError";
 
-export function useAuth(): IMiddleware {
+export function useAuth(hasFollowing = true): IMiddleware {
   return async (ctx, next) => {
     // 前端已经加密过的密码
     const auth = ctx.headers.authorization;
@@ -16,7 +17,16 @@ export function useAuth(): IMiddleware {
     ) {
       return createError({ status: 401, msg: "密码错误" });
     } else {
-      return await next();
+      if (hasFollowing) {
+        return await next();
+      } else {
+        ctx.body = {
+          status: 200,
+          msg: "ok",
+          data: {},
+        } as HttpRes;
+        return;
+      }
     }
   };
 }
