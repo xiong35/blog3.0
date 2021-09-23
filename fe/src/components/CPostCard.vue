@@ -116,6 +116,10 @@
       grid-row: 1/2;
       font-weight: bold;
       font-size: 1.5rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: keep-all;
+      white-space: nowrap;
     }
     &_hot {
       grid-column: 3/4;
@@ -140,6 +144,7 @@
 
       overflow: hidden;
       text-overflow: ellipsis;
+      word-break: break-all;
       line-height: 1.4em;
       max-height: 2.8em;
       display: -webkit-box;
