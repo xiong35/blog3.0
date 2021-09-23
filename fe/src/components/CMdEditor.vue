@@ -1,25 +1,41 @@
 <script lang="tsx">
-  import { defineComponent, ref } from "vue";
+  import { defineComponent, ref, Ref } from "vue";
 
   import VueMarkdownEditor from "../utils/setupMdEditor";
 
   export default defineComponent({
     name: "CMdEditor",
+    props: {
+      readOnly: Boolean,
+      content: {
+        type: Object as () => Ref<string> | string,
+        default: "",
+      },
+    },
     setup(props) {
-      const content = ref("");
+      const { content, readOnly } = props;
 
       return () => (
-        <VueMarkdownEditor
-          class="v-md-editor"
-          disabled-menus={[]}
-          onUploadImage={console.log}
-          v-model={content.value}
-          mode="editable"
-          // text={content.value}
-          placeholder="创作文章..."
-          left-toolbar="undo redo image"
-          right-toolbar="preview toc fullscreen"
-        ></VueMarkdownEditor>
+        <>
+          {readOnly ? (
+            <VueMarkdownEditor
+              class="v-md-editor"
+              mode={"preview"}
+              text={content}
+            ></VueMarkdownEditor>
+          ) : (
+            <VueMarkdownEditor
+              class="v-md-editor"
+              disabled-menus={[]}
+              onUploadImage={console.log}
+              v-model={(content as Ref).value}
+              mode={"editable"}
+              placeholder="创作文章..."
+              left-toolbar="undo redo image"
+              right-toolbar="preview fullscreen"
+            ></VueMarkdownEditor>
+          )}
+        </>
       );
     },
   });
@@ -33,7 +49,7 @@
       background-color: $background-2;
       color: $foreground;
     }
-    .v-md-textarea-editor.v-md-textarea-editor textarea {
+    .v-md-textarea-editor textarea {
       color: $foreground;
     }
     td {

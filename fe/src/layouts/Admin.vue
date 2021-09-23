@@ -18,7 +18,7 @@
     background-color: $background;
     min-height: 100vh;
     * {
-      cursor: unset;
+      cursor: initial;
     }
   }
 </style>
