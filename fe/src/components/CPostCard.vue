@@ -37,7 +37,14 @@
             <div class="c-postcard_digest">{post.digest}</div>
             <div class="c-postcard_tags">
               {post.tags.map((t) => (
-                <CTag class="c-postcard_tags-tag" name={t.name} key={t._id} />
+                <CTag
+                  class="c-postcard_tags-tag"
+                  name={t.name}
+                  key={t._id}
+                  onClick={(e) => {
+                    jumpTo(e, { name: "posts", query: { kw: t.name } });
+                  }}
+                />
               ))}
             </div>
             <div class="c-postcard_time u-only-big">

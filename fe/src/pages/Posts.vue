@@ -16,7 +16,9 @@
 
       return () => (
         <div class="p-posts">
-          <title class="p-posts_title">文章列表</title>
+          <title class="p-posts_title">
+            {kw.value ? `搜索“${kw.value}”的结果` : "文章列表"}
+          </title>
           <CPostList fromDate={fromDate} toDate={toDate} kw={kw.value} />
         </div>
       );

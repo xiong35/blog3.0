@@ -12,6 +12,7 @@
   import { getAllPosts } from "../network/post/getAllPosts";
   import { PER_PAGE } from "../network/request";
   import router from "../router";
+  import { scrollToTop } from "../utils/scrollTo";
   import CBtn from "./CBtn.vue";
   import CEmpty from "./CEmpty.vue";
   import CPostCard from "./CPostCard.vue";
@@ -123,12 +124,16 @@
             <CBtn
               content="上一页"
               disabled={currentPage.value === 0}
-              onClick={() => getPosts(false)}
+              onClick={() => {
+                getPosts(false).then(() => scrollToTop());
+              }}
             />
             <CBtn
               content="下一页"
               disabled={currentPage.value === maxPageNum.value}
-              onClick={() => getPosts(true)}
+              onClick={() => {
+                getPosts(true).then(() => scrollToTop());
+              }}
             />
           </div>
         </div>
