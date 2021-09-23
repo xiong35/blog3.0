@@ -46,9 +46,9 @@
           </div>
 
           <div class="c-postcard_decorate">
-            <div class="c-postcard_decorate-item c-postcard_decorate-1"></div>
-            <div class="c-postcard_decorate-item c-postcard_decorate-2"></div>
-            <div class="c-postcard_decorate-item c-postcard_decorate-3"></div>
+            <div class="c-postcard_decorate-item c-postcard_decorate-Alice"></div>
+            <div class="c-postcard_decorate-item c-postcard_decorate-Bob"></div>
+            <div class="c-postcard_decorate-item c-postcard_decorate-Candy"></div>
           </div>
         </article>
       );
@@ -68,6 +68,7 @@
       filter: grayscale(0.7) contrast(1.3);
       .c-postcard_decorate-item {
         display: block;
+        animation-play-state: running;
       }
       .c-postcard_decorate {
         top: -1px;
@@ -163,16 +164,15 @@
 
     &_decorate {
       position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
+      top: 1px;
+      bottom: 1px;
+      right: 1px;
+      left: 1px;
       background-color: transparent;
       overflow: hidden;
       z-index: -1;
       transition: all 0.3s;
       &-item {
-        display: none;
         background-color: $primary;
         position: absolute;
         width: 120%;
@@ -184,17 +184,18 @@
         left: -999px;
         margin: auto;
         animation: rotate linear infinite forwards;
+        animation-play-state: paused;
         mix-blend-mode: difference;
       }
-      &-1 {
+      &-Alice {
         clip-path: polygon(97% 32%, 42% 72%, 0% 29%, 26% 72%);
         animation-duration: 5s;
       }
-      &-2 {
+      &-Bob {
         clip-path: polygon(55% 5%, 45% 51%, 100% 60%, 24% 61%);
         animation-duration: 7s;
       }
-      &-3 {
+      &-Candy {
         clip-path: polygon(83% 19%, 62% 85%, 8% 26%, 49% 79%);
         animation-duration: 6s;
         animation-name: rotate-back;
