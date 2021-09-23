@@ -99,6 +99,11 @@ const routes: RouteRecordRaw[] = [
     meta: {
       title: "文章列表",
     },
+    props: (route) => ({
+      fromDate: route.query.fromDate,
+      toDate: route.query.toDate,
+      page: route.query.page,
+    }),
   },
   {
     path: "/:foo(.*)*",

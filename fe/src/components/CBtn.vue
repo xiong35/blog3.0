@@ -1,5 +1,5 @@
 <script lang="tsx">
-  import { defineComponent, ref } from "vue";
+  import { defineComponent, ref, toRef } from "vue";
   import { isHovering } from "../reactivity/theCursor";
 
   export default defineComponent({
@@ -12,14 +12,20 @@
         type: (Function as unknown) as () => (e: MouseEvent) => void,
         required: true,
       },
+      disabled: Boolean,
     },
-    setup({ content, onClick }) {
+    setup(props) {
+      const { content, onClick } = props;
+      const disabled = toRef(props, "disabled");
+
       return () => (
         <div
-          onMouseenter={() => (isHovering.value = true)}
+          onMouseenter={() =>
+            disabled.value ? void 0 : (isHovering.value = true)
+          }
           onMouseleave={() => (isHovering.value = false)}
-          onClick={onClick}
-          class="c-btn"
+          onClick={(e) => (disabled.value ? void 0 : onClick(e))}
+          class={`c-btn ${disabled.value ? "c-btn_disabled" : ""}`}
         >
           <div class="c-btn_content">{content}</div>
           <div class="c-btn_decorate c-btn_decorate-a"></div>
@@ -39,6 +45,11 @@
     height: 2.4em;
     display: inline-block;
     position: relative;
+
+    &_disabled {
+      filter: grayscale(1);
+      opacity: 0.8;
+    }
 
     &::before,
     &::after {
