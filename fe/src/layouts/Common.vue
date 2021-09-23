@@ -2,33 +2,49 @@
   import { defineComponent, ref } from "vue";
   import CBtn from "../components/CBtn.vue";
   import { isHovering } from "../reactivity/theCursor";
+  import router from "../router";
   import { jumpTo } from "../utils/jumpRoute";
 
+  // TODO limit max width
   export default defineComponent({
     name: "CommonLayout",
     setup(props, { slots }) {
+      const kw = ref("");
+
       return () => (
         <div class="l-com">
           <header class="l-com_header">
-            <div class="l-com_header-logo u-only-big">
-              Xiong<sup>35 </sup>'s Blog
-            </div>
-            <div class="u-spacer u-only-big"></div>
+            <div class="l-com_header-content">
+              <div class="l-com_header-logo u-only-big">
+                Xiong<sup>35 </sup>'s Blog
+              </div>
+              <div class="u-spacer u-only-big"></div>
 
-            <div class="l-com_header-searchbar">
-              <input class="l-com_header-searchbar-input" />
+              <div class="l-com_header-searchbar">
+                <input
+                  v-model={kw.value}
+                  class="l-com_header-searchbar-input"
+                  onKeydown={(e) => {
+                    if (e.key === "Enter")
+                      router.push({ name: "posts", query: { kw: kw.value } });
+                  }}
+                />
+                <img
+                  class="l-com_header-searchbar-icon"
+                  src="/src/assets/img/search.svg"
+                  onMouseleave={() => (isHovering.value = false)}
+                  onMouseenter={() => (isHovering.value = true)}
+                  onClick={(e) =>
+                    jumpTo(e, { name: "posts", query: { kw: kw.value } })
+                  }
+                />
+              </div>
+
               <img
-                class="l-com_header-searchbar-icon"
-                src="/src/assets/img/search.svg"
-                onMouseleave={() => (isHovering.value = false)}
-                onMouseenter={() => (isHovering.value = true)}
+                class="l-com_header-menu u-only-small"
+                src="/src/assets/img/menu.svg"
               />
             </div>
-
-            <img
-              class="l-com_header-menu u-only-small"
-              src="/src/assets/img/menu.svg"
-            />
           </header>
 
           <main class="l-com_main">
@@ -65,6 +81,7 @@
 
   .l-com {
     $header-h: 48px;
+    $max-w: 1100px;
     background-color: $background;
 
     &_header {
@@ -74,14 +91,19 @@
       top: 0;
       height: $header-h;
 
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-
       border-bottom: 1px solid $foreground;
       background-color: $background;
 
-      z-index: 1;
+      z-index: 10;
+
+      &-content {
+        max-width: $max-w;
+        height: 100%;
+        margin: auto;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+      }
 
       &-logo {
         font-weight: 100;
@@ -118,8 +140,10 @@
 
     &_main {
       padding-top: $header-h;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
+      max-width: $max-w;
+      margin: auto;
 
       &-l,
       &-r {

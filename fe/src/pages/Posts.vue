@@ -1,14 +1,23 @@
 <script lang="tsx">
-  import { defineComponent, ref } from "vue";
-  import { jumpTo } from "../utils/jumpRoute";
+  import { defineComponent, ref, toRef } from "vue";
+  import CPostList from "../components/CPostList.vue";
 
   export default defineComponent({
     name: "Posts",
+    props: {
+      fromDate: Number,
+      toDate: Number,
+      kw: String,
+    },
     setup(props) {
+      const { fromDate, toDate } = props;
+
+      const kw = toRef(props, "kw");
+
       return () => (
         <div class="p-posts">
-          <h2>Posts</h2>
-          <button onClick={(e) => jumpTo({ name: "home" })(e)}>to home</button>
+          <h2>{kw.value}</h2>
+          <CPostList fromDate={fromDate} toDate={toDate} kw={kw.value} />
         </div>
       );
     },

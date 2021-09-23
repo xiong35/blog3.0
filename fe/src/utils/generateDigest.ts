@@ -11,6 +11,11 @@ const toReplace: { reg: ReplaceParam[0]; replace: ReplaceParam[1] }[] = [
     reg: /^#{1,6}/gm,
     replace: () => "",
   },
+  {
+    // 去除引用
+    reg: /^> (.*)/gm,
+    replace: (match, $1) => $1,
+  },
   // ol 和 ul 就不去除了
   {
     // 去除行内代码段
@@ -52,5 +57,5 @@ const toReplace: { reg: ReplaceParam[0]; replace: ReplaceParam[1] }[] = [
 export function generateDigest(content: string): string {
   return toReplace
     .reduce((c, r) => c.replace(r.reg, r.replace), content)
-    .slice(0, 100);
+    .slice(0, 200);
 }

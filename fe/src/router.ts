@@ -12,8 +12,13 @@ const About = defineAsyncComponent({
   errorComponent: CError,
   loadingComponent: CLoading,
 });
-const Admin = defineAsyncComponent({
-  loader: () => import("./pages/Admin.vue"),
+const AdminCompose = defineAsyncComponent({
+  loader: () => import("./pages/AdminCompose.vue"),
+  errorComponent: CError,
+  loadingComponent: CLoading,
+});
+const AdminLogin = defineAsyncComponent({
+  loader: () => import("./pages/AdminLogin.vue"),
   errorComponent: CError,
   loadingComponent: CLoading,
 });
@@ -56,20 +61,35 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
-    path: "/admin",
-    name: "admin",
-    component: Admin,
+    path: "/admin/compose",
+    name: "admin-compose",
+    component: AdminCompose,
     meta: {
-      title: "管理",
+      title: "发表",
       admin: true,
     },
   },
   {
-    path: "/post-detail",
+    path: "/admin/login",
+    name: "admin-login",
+    component: AdminLogin,
+    meta: {
+      title: "登录后台",
+      admin: true,
+    },
+  },
+  {
+    path: "/post/:id",
     name: "post-detail",
     component: PostDetail,
     meta: {
       title: "文章详情",
+    },
+    props: (route) => ({
+      id: route.params.id,
+    }),
+    beforeEnter: (to) => {
+      if (!to.params.id) return { name: "not-found" };
     },
   },
   {
@@ -79,6 +99,11 @@ const routes: RouteRecordRaw[] = [
     meta: {
       title: "文章列表",
     },
+    props: (route) => ({
+      fromDate: route.query.fromDate,
+      toDate: route.query.toDate,
+      kw: route.query.kw,
+    }),
   },
   {
     path: "/:foo(.*)*",

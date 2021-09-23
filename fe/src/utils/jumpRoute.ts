@@ -12,5 +12,8 @@ export function openInNewTab(opts: RouteLocationRaw) {
 
 export function jumpTo(e: MouseEvent, opts: RouteLocationRaw) {
   const close = triggerMaskAnim({ x: e.clientX, y: e.clientY });
-  router.push(opts).then(close);
+  setTimeout(() => {
+    router.push(opts).then(close);
+    console.log("# jumpRoute");
+  }, 800);
 }

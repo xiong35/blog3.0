@@ -12,7 +12,13 @@
 </script>
 
 <style lang="scss">
+  @import "../assets/css/variables.scss";
+
   .l-admin {
-    width: 200px;
+    background-color: $background;
+    min-height: 100vh;
+    * {
+      cursor: initial;
+    }
   }
 </style>

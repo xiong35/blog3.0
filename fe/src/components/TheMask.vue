@@ -36,7 +36,7 @@
       background-color: $background;
       border: 1px solid $primary;
 
-      z-index: 8;
+      z-index: 80;
     }
 
     &.together {
