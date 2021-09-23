@@ -4,11 +4,17 @@
 
   export default defineComponent({
     name: "Posts",
+    props: {
+      fromDate: Number,
+      toDate: Number,
+    },
     setup(props) {
+      const { fromDate, toDate } = props;
+
       return () => (
         <div class="p-posts">
           <h2>Posts</h2>
-          <CPostList />
+          <CPostList fromDate={fromDate} toDate={toDate} />
         </div>
       );
     },

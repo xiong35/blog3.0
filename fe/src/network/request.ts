@@ -89,4 +89,4 @@ export async function request<T>(
 /**
  * 分页时每页最多有多少项
  */
-export const PER_PAGE = 15;
+export const PER_PAGE = 10;
