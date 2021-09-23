@@ -18,7 +18,7 @@
     setup(props) {
       const posts = ref<PostBrief[]>([]);
 
-      const currentPage = ref(props.page || 0);
+      const currentPage = ref(-9999);
       const maxPageNum = ref(9999);
 
       const fromDate = ref(props.fromDate || 0);
@@ -29,7 +29,7 @@
           {},
           "",
           window.location.href.split("?")[0] +
-            `?fromDate=${fromDate.value}&toDate=${toDate.value}&page=${currentPage.value}`
+            `?fromDate=${fromDate.value}&toDate=${toDate.value}`
         );
       });
 

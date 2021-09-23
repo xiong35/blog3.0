@@ -102,7 +102,6 @@ const routes: RouteRecordRaw[] = [
     props: (route) => ({
       fromDate: route.query.fromDate,
       toDate: route.query.toDate,
-      page: route.query.page,
     }),
   },
   {

@@ -7,15 +7,14 @@
     props: {
       fromDate: Number,
       toDate: Number,
-      page: Number,
     },
     setup(props) {
-      const { fromDate, toDate, page } = props;
+      const { fromDate, toDate } = props;
 
       return () => (
         <div class="p-posts">
           <h2>Posts</h2>
-          <CPostList fromDate={fromDate} toDate={toDate} page={page} />
+          <CPostList fromDate={fromDate} toDate={toDate} />
         </div>
       );
     },
