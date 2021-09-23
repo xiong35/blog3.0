@@ -39,8 +39,8 @@
     border-radius: 999px;
     border: 1px solid $secondary;
     color: $secondary;
-    cursor: pointer;
     z-index: 0;
+    overflow: hidden;
 
     &:hover {
       &::after {
@@ -55,10 +55,10 @@
       background-color: currentColor;
       opacity: 0;
       transition: opacity 0.2s;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
+      top: -1px;
+      bottom: -1px;
+      right: -1px;
+      left: -1px;
     }
 
     &_active {

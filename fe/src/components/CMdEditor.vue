@@ -1,5 +1,5 @@
 <script lang="tsx">
-  import { defineComponent, ref, Ref } from "vue";
+  import { defineComponent, ref, Ref, toRef } from "vue";
 
   import VueMarkdownEditor from "../utils/setupMdEditor";
 
@@ -7,13 +7,10 @@
     name: "CMdEditor",
     props: {
       readOnly: Boolean,
-      content: {
-        type: Object as () => Ref<string> | string,
-        default: "",
-      },
+      content: { type: Object as () => Ref<string>, required: true },
     },
     setup(props) {
-      const { content, readOnly } = props;
+      let { content, readOnly } = props;
 
       return () => (
         <>
@@ -21,7 +18,7 @@
             <VueMarkdownEditor
               class="v-md-editor"
               mode={"preview"}
-              text={content}
+              v-model={content.value}
             ></VueMarkdownEditor>
           ) : (
             <VueMarkdownEditor

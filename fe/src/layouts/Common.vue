@@ -82,7 +82,7 @@
       border-bottom: 1px solid $foreground;
       background-color: $background;
 
-      z-index: 1;
+      z-index: 10;
 
       &-logo {
         font-weight: 100;
@@ -119,7 +119,7 @@
 
     &_main {
       padding-top: $header-h;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
 
       &-l,

@@ -79,11 +79,17 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
-    path: "/post-detail",
+    path: "/post/:id",
     name: "post-detail",
     component: PostDetail,
     meta: {
       title: "文章详情",
+    },
+    props: (route) => ({
+      id: route.params.id,
+    }),
+    beforeEnter: (to) => {
+      if (!to.params.id) return { name: "not-found" };
     },
   },
   {

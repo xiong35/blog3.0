@@ -16,7 +16,7 @@ export const getPostDetail: IMiddleware = async (ctx) => {
   if (!post) createError({ status: 404, msg: "找不到文章" });
 
   post.visited++;
-  post.save();
+  post.save({ timestamps: false });
 
   console.log("# getPostDetail", { post });
 
