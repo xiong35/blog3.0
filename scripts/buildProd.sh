@@ -4,8 +4,16 @@
 # 在 linux shell 下执行 `./scripts/buildProd.sh` 命令即可
 # windows 选手可以用 git bash 执行
 
+
 echo -e "\n### switch to DEV ###\n"
 git switch dev
+
+echo -e "\n### build ###\n"
+cd fe
+yarn build
+cd ../be
+yarn build
+
 echo -e "\n### push DEV ###\n"
 git push
 
