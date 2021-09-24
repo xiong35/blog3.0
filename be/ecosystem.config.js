@@ -5,10 +5,7 @@ module.exports = {
   apps: [
     {
       name,
-      script: path.resolve(
-        __dirname,
-        "./dist/werewolf-backend/src/index.js"
-      ),
+      script: path.resolve(__dirname, "./dist/be/src/index.js"),
       instances: 1,
       autorestart: false,
       watch: true,
