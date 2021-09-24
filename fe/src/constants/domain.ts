@@ -1,1 +1,1 @@
-export const BE_DOMAIN = "http://localhost:8080";
+export const BE_DOMAIN = "http://api.xiong35.cn/blog3.0/";

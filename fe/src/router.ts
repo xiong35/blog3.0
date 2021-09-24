@@ -43,7 +43,7 @@ const NotFound = defineAsyncComponent({
   loadingComponent: CLoading,
 });
 
-const routes: RouteRecordRaw[] = [
+let routes: RouteRecordRaw[] = [
   {
     path: "/",
     // name: "home",
@@ -117,6 +117,12 @@ const routes: RouteRecordRaw[] = [
     },
   },
 ];
+
+routes = routes.map((route) =>
+  route.name === "not-found"
+    ? route
+    : { ...route, path: "/blog3.0" + route.path }
+);
 
 const router = createRouter({
   history: createWebHistory(),
