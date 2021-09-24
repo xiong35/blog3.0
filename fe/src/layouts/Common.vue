@@ -1,6 +1,9 @@
 <script lang="tsx">
   import { defineComponent, ref } from "vue";
+  import { Tag } from "../../shared/models/tag";
   import CBtn from "../components/CBtn.vue";
+  import CTag from "../components/CTag.vue";
+  import { getAllTags } from "../network/tag/getAllTags";
   import { isHovering } from "../reactivity/theCursor";
   import router from "../router";
   import { jumpTo } from "../utils/jumpRoute";
@@ -10,6 +13,8 @@
     name: "CommonLayout",
     setup(props, { slots }) {
       const kw = ref("");
+      const tags = ref<Tag[]>([]);
+      getAllTags().then((ts) => (tags.value = ts));
 
       return () => (
         <div class="l-com">
@@ -28,6 +33,7 @@
                     if (e.key === "Enter")
                       router.push({ name: "posts", query: { kw: kw.value } });
                   }}
+                  placeholder="搜索标题，摘要，Tag。支持正则"
                 />
                 <img
                   class="l-com_header-searchbar-icon"
@@ -51,21 +57,36 @@
             <aside class="l-com_main-l u-only-big">
               <CBtn
                 content="首页"
-                onClick={(e) => jumpTo(e, { name: "home" })}
+                disabled
+                onClick={(e) => alert("还没想好要写啥, 先放着...")}
+                // onClick={(e) => jumpTo(e, { name: "home" })}
               />
               <CBtn
                 content="文章"
                 onClick={(e) => jumpTo(e, { name: "posts" })}
               />
               <CBtn
-                content="关于"
-                onClick={(e) => jumpTo(e, { name: "about" })}
+                content="简历"
+                onClick={(e) =>
+                  (window.location.href = "http://resume.xiong35.cn")
+                }
               />
             </aside>
 
             <div class="l-com_main-m">{slots.default && slots.default()}</div>
 
-            <aside class="l-com_main-r u-only-big"></aside>
+            <aside class="l-com_main-r u-only-big">
+              {tags.value.map((t) => (
+                <CTag
+                  class="pa-compose_wrapper-tags-tag"
+                  name={`${t.name} ${t.count}`}
+                  key={t._id}
+                  onClick={(e) =>
+                    jumpTo(e, { name: "posts", query: { kw: t.name } })
+                  }
+                />
+              ))}
+            </aside>
           </main>
 
           <footer class="l-com_footer"></footer>
@@ -108,7 +129,7 @@
 
       &-logo {
         font-weight: 100;
-        font-size: 120%;
+        font-size: 1.3rem;
       }
 
       &-searchbar {
@@ -119,7 +140,7 @@
         align-items: center;
         flex: 1 1 0;
         @media (min-width: 768.321px) {
-          flex: 0 0 200px;
+          flex: 0 0 300px;
         }
         &-input {
           border: none;
@@ -160,8 +181,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-top: 4rem;
         .c-btn {
-          margin: 20px;
+          margin: 1rem;
+        }
+      }
+      &-r {
+        padding: 4rem 1rem;
+        .c-tag {
+          margin: 0.15rem 0.25rem;
+          font-size: 1em;
         }
       }
     }
