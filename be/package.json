@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "rm -rf dist && tsc",
-    "pro": "// TODO npx pm2 start ecosystem.config.js --env production -o /var/www/game/werewolf/werewolf-backend/log/pm2.log -e /var/www/game/werewolf/werewolf-backend/log/pm2-err.log",
+    "pro": "npx pm2 start ecosystem.config.js --env production -o /var/www/blog3.0/be/log/pm2.log -e /var/www/game/werewolf/werewolf-backend/log/pm2-err.log",
     "stop": "npx pm2 stop ecosystem.config.js"
   },
   "author": "",
