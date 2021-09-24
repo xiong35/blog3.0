@@ -17,7 +17,17 @@ const app = new Koa<
 
 app
   .use(logger())
-  .use(cors({ credentials: true, origin: "http://localhost:3000" }))
+  .use(
+    cors({
+      origin: "*",
+      allowMethods: "*",
+      allowHeaders:
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+      exposeHeaders:
+        "Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Cache-Control, Content-Language, Content-Type",
+      credentials: true,
+    })
+  )
 
   .use(useHandleError())
 
@@ -25,6 +35,6 @@ app
 
   .use(router.routes());
 
-app.listen(8080);
+app.listen(3012);
 
-console.log("listen on 8080");
+console.log("listen on 3012");
