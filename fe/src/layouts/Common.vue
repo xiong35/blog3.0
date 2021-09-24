@@ -48,11 +48,7 @@
           </header>
 
           <main class="l-com_main">
-            <aside class="l-com_main-l"></aside>
-
-            <div class="l-com_main-m">{slots.default && slots.default()}</div>
-
-            <aside class="l-com_main-r">
+            <aside class="l-com_main-l u-only-big">
               <CBtn
                 content="首页"
                 onClick={(e) => jumpTo(e, { name: "home" })}
@@ -66,6 +62,10 @@
                 onClick={(e) => jumpTo(e, { name: "about" })}
               />
             </aside>
+
+            <div class="l-com_main-m">{slots.default && slots.default()}</div>
+
+            <aside class="l-com_main-r u-only-big"></aside>
           </main>
 
           <footer class="l-com_footer"></footer>
@@ -140,6 +140,7 @@
     }
 
     &_main {
+      padding: 0 16px;
       padding-top: $header-h;
       min-height: calc(100vh - #{$header-h} - #{$footer-h});
       display: flex;
@@ -155,7 +156,7 @@
         flex: 1 1;
       }
 
-      &-r {
+      &-l {
         display: flex;
         flex-direction: column;
         align-items: center;

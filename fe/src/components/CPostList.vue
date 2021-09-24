@@ -83,8 +83,17 @@
             else currentPage.value--;
           }
 
-          if (newPosts.length !== PER_PAGE)
-            maxPageNum.value = currentPage.value;
+          if (newPosts.length !== PER_PAGE) {
+            if (!nextPage) {
+              fromDate.value = 0;
+              toDate.value = Date.now();
+              currentPage.value = 0;
+              await getPosts(true, true);
+              return;
+            } else {
+              maxPageNum.value = currentPage.value;
+            }
+          }
         } else {
           if (nextPage) maxPageNum.value = currentPage.value;
           else currentPage.value = 0;
@@ -117,23 +126,19 @@
                 fromDate.value = 0;
                 toDate.value = Date.now();
                 currentPage.value = 0;
-                getPosts(true, true);
+                getPosts(true, true).then(() => scrollToTop());
               }}
             />
             <div class="u-spacer"> </div>
             <CBtn
               content="上一页"
               disabled={currentPage.value === 0}
-              onClick={() => {
-                getPosts(false).then(() => scrollToTop());
-              }}
+              onClick={() => getPosts(false).then(() => scrollToTop())}
             />
             <CBtn
               content="下一页"
               disabled={currentPage.value === maxPageNum.value}
-              onClick={() => {
-                getPosts(true).then(() => scrollToTop());
-              }}
+              onClick={() => getPosts(true).then(() => scrollToTop())}
             />
           </div>
         </div>

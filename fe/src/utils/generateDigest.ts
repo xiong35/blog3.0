@@ -18,13 +18,13 @@ const toReplace: { reg: ReplaceParam[0]; replace: ReplaceParam[1] }[] = [
   },
   // ol 和 ul 就不去除了
   {
-    // 去除行内代码段
-    reg: /`.*?`/g,
+    // 去除块级代码段
+    reg: /```[\s\S]*?```/gm,
     replace: () => "[代码]",
   },
   {
-    // 去除块级代码段
-    reg: /```(.|\n)*?```/gm,
+    // 去除行内代码段
+    reg: /`.*?`/g,
     replace: () => "[代码]",
   },
   {
@@ -46,6 +46,11 @@ const toReplace: { reg: ReplaceParam[0]; replace: ReplaceParam[1] }[] = [
     // 去除整块 katex
     reg: /\$\$(.|\n)*?\$\$/gm,
     replace: () => `[公式]`,
+  },
+  {
+    // 将多个空白字符合并
+    reg: /\s+/gm,
+    replace: () => ` `,
   },
 ];
 

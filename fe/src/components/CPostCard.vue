@@ -201,15 +201,15 @@
       }
       &-Alice {
         clip-path: polygon(97% 32%, 42% 72%, 0% 29%, 26% 72%);
-        animation-duration: 5s;
+        animation-duration: 7s;
       }
       &-Bob {
         clip-path: polygon(55% 5%, 45% 51%, 100% 60%, 24% 61%);
-        animation-duration: 7s;
+        animation-duration: 11s;
       }
       &-Candy {
         clip-path: polygon(83% 19%, 62% 85%, 8% 26%, 49% 79%);
-        animation-duration: 6s;
+        animation-duration: 9s;
         animation-name: rotate-back;
         @keyframes rotate-back {
           from {
