@@ -54,7 +54,56 @@
     }
     tr:nth-child(2n),
     th {
+      * {
+        background-color: $background;
+      }
+    }
+
+    h1,
+    h2,
+    h3 {
+      position: relative;
+      padding-left: 14px;
+      border: none;
+      &::before {
+        position: absolute;
+        content: "";
+        top: 1px;
+        bottom: 0;
+        left: 0;
+        border-radius: 999px;
+        width: 3px;
+      }
+    }
+    h1 {
+      &::before {
+        width: 4px;
+        background-color: $primary;
+      }
+    }
+    h2 {
+      &::before {
+        width: 2px;
+        background-color: $secondary;
+      }
+    }
+    h3 {
+      &::before {
+        width: 1px;
+        background-color: $primary-2;
+      }
+    }
+
+    strong {
+      color: $md-strong;
+    }
+    code {
+      color: $md-code;
+      margin: 0.2rem;
       background-color: $background;
+    }
+    a {
+      color: $md-a;
     }
 
     [class^="v-md-prism"] {
