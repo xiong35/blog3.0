@@ -2,7 +2,7 @@ import axiod from "https://deno.land/x/axiod/mod.ts";
 
 import { processContent } from "./processContent.ts";
 
-const url = "http://127.0.0.1:8080/post";
+const url = "http://api.xiong35.cn/blog3.0/post";
 
 export async function sendRequest(content: string, auth: string) {
   const data = processContent(content);
