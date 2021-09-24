@@ -5,6 +5,7 @@
   import { dateFormat } from "../utils/dateFormat";
   import { jumpTo } from "../utils/jumpRoute";
   import CTag from "./CTag.vue";
+  import hotImg from "../assets/img/hot.svg";
 
   export default defineComponent({
     name: "CPostCard",
@@ -27,17 +28,20 @@
               {post.title}
             </title>
             <div class="c-postcard_hot">
-              <img
-                src="/src/assets/img/hot.svg"
-                alt="hot"
-                class="c-postcard_hot-icon"
-              />
+              <img src={hotImg} alt="hot" class="c-postcard_hot-icon" />
               <span class="c-postcard_hot-count">{post.visited}</span>
             </div>
             <div class="c-postcard_digest">{post.digest}</div>
             <div class="c-postcard_tags">
               {post.tags.map((t) => (
-                <CTag class="c-postcard_tags-tag" name={t.name} key={t._id} />
+                <CTag
+                  class="c-postcard_tags-tag"
+                  name={t.name}
+                  key={t._id}
+                  onClick={(e) => {
+                    jumpTo(e, { name: "posts", query: { kw: t.name } });
+                  }}
+                />
               ))}
             </div>
             <div class="c-postcard_time u-only-big">
@@ -194,15 +198,15 @@
       }
       &-Alice {
         clip-path: polygon(97% 32%, 42% 72%, 0% 29%, 26% 72%);
-        animation-duration: 5s;
+        animation-duration: 7s;
       }
       &-Bob {
         clip-path: polygon(55% 5%, 45% 51%, 100% 60%, 24% 61%);
-        animation-duration: 7s;
+        animation-duration: 11s;
       }
       &-Candy {
         clip-path: polygon(83% 19%, 62% 85%, 8% 26%, 49% 79%);
-        animation-duration: 6s;
+        animation-duration: 9s;
         animation-name: rotate-back;
         @keyframes rotate-back {
           from {

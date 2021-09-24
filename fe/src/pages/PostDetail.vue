@@ -5,6 +5,7 @@
   import CTag from "../components/CTag.vue";
   import { getPostDetail } from "../network/post/getPostDetail";
   import { dateFormat } from "../utils/dateFormat";
+  import imgHot from "../assets/img/hot.svg";
 
   export default defineComponent({
     name: "PostDetail",
@@ -29,11 +30,7 @@
               {post.value.title}
             </title>
             <div class="p-post-detail_hot">
-              <img
-                src="/src/assets/img/hot.svg"
-                alt="hot"
-                class="p-post-detail_hot-icon"
-              />
+              <img src={imgHot} alt="hot" class="p-post-detail_hot-icon" />
               <span class="p-post-detail_hot-count">{post.value.visited}</span>
             </div>
             <div class="p-post-detail_tags">

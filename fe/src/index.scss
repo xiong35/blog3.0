@@ -30,6 +30,7 @@
   font-family: "PingFang SC", "Source Han Sans SC", "Helvetica Neue", Helvetica,
     Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei",
     "WenQuanYi Micro Hei", sans-serif;
+  font-size: 14px;
 }
 
 .u-only-small {
@@ -44,4 +45,11 @@
 }
 .u-spacer {
   flex: 1;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }

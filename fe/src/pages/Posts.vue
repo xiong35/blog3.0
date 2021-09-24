@@ -16,7 +16,9 @@
 
       return () => (
         <div class="p-posts">
-          <h2>{kw.value}</h2>
+          <title class="p-posts_title">
+            {kw.value ? `搜索“${kw.value}”的结果` : "文章列表"}
+          </title>
           <CPostList fromDate={fromDate} toDate={toDate} kw={kw.value} />
         </div>
       );
@@ -26,5 +28,10 @@
 
 <style lang="scss">
   .p-posts {
+    &_title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 1rem 0;
+    }
   }
 </style>

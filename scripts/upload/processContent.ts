@@ -1,4 +1,33 @@
-type ReplaceParam = Parameters<String["replace"]>;
+type Data = {
+  digest: string;
+  title: string;
+  content: string;
+  tagNames: string[];
+};
+
+export function processContent(content: string): Data {
+  content = content.trim();
+
+  const reg = /# (.*)\s*\> 关键词\: (.*)\s*([\s\S]*)/gm;
+  const [_, title, tags, main] = reg.exec(content) || [];
+
+  if (!title) throw new Error("没有标题");
+  if (!main) throw new Error("没有主要内容");
+  if (!tags) throw new Error("没有tag");
+
+  const digest = generateDigest(main);
+  const tagNames = tags.split(",").map((t) => t.trim());
+  if (tagNames.length > 5) throw new Error("标题太多了: " + tags);
+
+  return {
+    digest,
+    title,
+    tagNames,
+    content,
+  };
+}
+
+type ReplaceParam = Parameters<string["replace"]>;
 
 const toReplace: { reg: ReplaceParam[0]; replace: ReplaceParam[1] }[] = [
   {
@@ -59,7 +88,7 @@ const toReplace: { reg: ReplaceParam[0]; replace: ReplaceParam[1] }[] = [
  * @param content
  * @returns
  */
-export function generateDigest(content: string): string {
+function generateDigest(content: string): string {
   return toReplace
     .reduce((c, r) => c.replace(r.reg, r.replace), content)
     .slice(0, 200);

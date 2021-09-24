@@ -1,5 +1,6 @@
 <script lang="tsx">
   import { defineComponent, ref, toRef } from "vue";
+  import { isHovering } from "../reactivity/theCursor";
 
   export default defineComponent({
     name: "CTag",
@@ -17,7 +18,12 @@
       return () => (
         <div
           class={`c-tag ${active.value ? "c-tag_active" : ""}`}
-          onClick={onClick}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClick(e);
+          }}
+          onMouseleave={() => (isHovering.value = false)}
+          onMouseenter={() => (isHovering.value = true)}
         >
           {name}
         </div>
@@ -34,7 +40,7 @@
     position: relative;
 
     font-size: 80%;
-    padding: 0.08em 0.6em 0.2em;
+    padding: 0.08em 0.6em 0.1em;
 
     border-radius: 999px;
     border: 1px solid $secondary;
@@ -44,7 +50,7 @@
 
     &:hover {
       &::after {
-        opacity: 0.1;
+        opacity: 0.15;
       }
     }
 

@@ -12,7 +12,9 @@
   import { getAllPosts } from "../network/post/getAllPosts";
   import { PER_PAGE } from "../network/request";
   import router from "../router";
+  import { scrollToTop } from "../utils/scrollTo";
   import CBtn from "./CBtn.vue";
+  import CEmpty from "./CEmpty.vue";
   import CPostCard from "./CPostCard.vue";
 
   export default defineComponent({
@@ -81,8 +83,17 @@
             else currentPage.value--;
           }
 
-          if (newPosts.length !== PER_PAGE)
-            maxPageNum.value = currentPage.value;
+          if (newPosts.length !== PER_PAGE) {
+            if (!nextPage) {
+              fromDate.value = 0;
+              toDate.value = Date.now();
+              currentPage.value = 0;
+              await getPosts(true, true);
+              return;
+            } else {
+              maxPageNum.value = currentPage.value;
+            }
+          }
         } else {
           if (nextPage) maxPageNum.value = currentPage.value;
           else currentPage.value = 0;
@@ -94,13 +105,19 @@
       return () => (
         <div class="c-post-list">
           <div class="c-post-list_posts">
-            {posts.value.map((post) => (
-              <CPostCard
-                class="c-post-list_posts-postcard"
-                post={post}
-                key={post._id}
-              />
-            ))}
+            {posts.value.length ? (
+              <>
+                {posts.value.map((post) => (
+                  <CPostCard
+                    class="c-post-list_posts-postcard"
+                    post={post}
+                    key={post._id}
+                  />
+                ))}
+              </>
+            ) : (
+              <CEmpty style={{ margin: "10vh auto" }} />
+            )}
           </div>
           <div class="c-post-list_pager">
             <CBtn
@@ -109,19 +126,19 @@
                 fromDate.value = 0;
                 toDate.value = Date.now();
                 currentPage.value = 0;
-                getPosts(true, true);
+                getPosts(true, true).then(() => scrollToTop());
               }}
             />
             <div class="u-spacer"> </div>
             <CBtn
               content="上一页"
               disabled={currentPage.value === 0}
-              onClick={() => getPosts(false)}
+              onClick={() => getPosts(false).then(() => scrollToTop())}
             />
             <CBtn
               content="下一页"
               disabled={currentPage.value === maxPageNum.value}
-              onClick={() => getPosts(true)}
+              onClick={() => getPosts(true).then(() => scrollToTop())}
             />
           </div>
         </div>
