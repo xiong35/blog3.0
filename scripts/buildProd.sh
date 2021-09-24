@@ -14,6 +14,11 @@ yarn build
 cd ../be
 yarn build
 
+echo -e "\n### commit ###\n"
+cd ..
+git add .
+git commit -m "build fe & be"
+
 echo -e "\n### push DEV ###\n"
 git push
 
