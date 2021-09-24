@@ -40,7 +40,7 @@
     position: relative;
 
     font-size: 80%;
-    padding: 0.08em 0.6em 0.2em;
+    padding: 0.08em 0.6em 0.1em;
 
     border-radius: 999px;
     border: 1px solid $secondary;

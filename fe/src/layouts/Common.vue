@@ -3,6 +3,7 @@
   import { Tag } from "../../shared/models/tag";
   import CBtn from "../components/CBtn.vue";
   import CTag from "../components/CTag.vue";
+  import TheFooter from "../components/TheFooter.vue";
   import { getAllTags } from "../network/tag/getAllTags";
   import { isHovering } from "../reactivity/theCursor";
   import router from "../router";
@@ -20,7 +21,10 @@
         <div class="l-com">
           <header class="l-com_header">
             <div class="l-com_header-content">
-              <div class="l-com_header-logo u-only-big">
+              <div
+                class="l-com_header-logo"
+                onClick={() => router.push({ name: "posts" })}
+              >
                 Xiong<sup>35 </sup>'s Blog
               </div>
               <div class="u-spacer u-only-big"></div>
@@ -46,10 +50,10 @@
                 />
               </div>
 
-              <img
+              {/* <img
                 class="l-com_header-menu u-only-small"
                 src="/src/assets/img/menu.svg"
-              />
+              /> */}
             </div>
           </header>
 
@@ -89,7 +93,9 @@
             </aside>
           </main>
 
-          <footer class="l-com_footer"></footer>
+          <footer class="l-com_footer">
+            <TheFooter />
+          </footer>
         </div>
       );
     },
@@ -130,6 +136,12 @@
       &-logo {
         font-weight: 100;
         font-size: 1.3rem;
+        @media (max-width: 768.321px) {
+          font-size: 1.2rem;
+          margin-right: 1rem;
+          word-break: keep-all;
+          white-space: pre;
+        }
       }
 
       &-searchbar {
@@ -138,7 +150,8 @@
 
         display: flex;
         align-items: center;
-        flex: 1 1 0;
+        flex: 1 1 200px;
+
         @media (min-width: 768.321px) {
           flex: 0 0 300px;
         }
@@ -146,7 +159,8 @@
           border: none;
           padding: 5px;
           background-color: transparent;
-          flex: 1;
+          flex: 1 1 0;
+          width: 0;
         }
         &-icon {
           width: 1.5em;
@@ -170,7 +184,7 @@
 
       &-l,
       &-r {
-        flex: 0 0 200px;
+        flex: 0 0;
         height: 400px;
       }
       &-m {
@@ -178,6 +192,7 @@
       }
 
       &-l {
+        flex-basis: 150px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -187,7 +202,8 @@
         }
       }
       &-r {
-        padding: 4rem 1rem;
+        padding: 4rem 0 0 1rem;
+        flex-basis: 250px;
         .c-tag {
           margin: 0.15rem 0.25rem;
           font-size: 1em;
@@ -196,7 +212,7 @@
     }
 
     &_footer {
-      height: 200px;
+      min-height: 200px;
     }
   }
 </style>
