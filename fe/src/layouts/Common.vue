@@ -8,6 +8,8 @@
   import { isHovering } from "../reactivity/theCursor";
   import router from "../router";
   import { jumpTo } from "../utils/jumpRoute";
+  import imgSearch from "../assets/img/search.svg";
+  import imgMenu from "../assets/img/menu.svg";
 
   // TODO limit max width
   export default defineComponent({
@@ -38,10 +40,11 @@
                       router.push({ name: "posts", query: { kw: kw.value } });
                   }}
                   placeholder="搜索标题，摘要，Tag。支持正则"
+                  maxlength={30}
                 />
                 <img
                   class="l-com_header-searchbar-icon"
-                  src="/src/assets/img/search.svg"
+                  src={imgSearch}
                   onMouseleave={() => (isHovering.value = false)}
                   onMouseenter={() => (isHovering.value = true)}
                   onClick={(e) =>
@@ -52,7 +55,7 @@
 
               {/* <img
                 class="l-com_header-menu u-only-small"
-                src="/src/assets/img/menu.svg"
+                src={imgMenu}
               /> */}
             </div>
           </header>

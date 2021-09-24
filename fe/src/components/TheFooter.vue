@@ -1,13 +1,16 @@
 <script lang="tsx">
   import { defineComponent, ref } from "vue";
 
+  import imgGithub from "../assets/img/github.svg";
+  import img公安 from "../assets/img/公安.png";
+
   export default defineComponent({
     name: "TheFooter",
     setup(props) {
       return () => (
         <div class="t-footer">
           <div class="t-footer_repo">
-            <img src="/src/assets/img/github.svg" alt="github" />
+            <img src={imgGithub} alt="github" />
             <a href="https://github.com/xiong35/blog3.0">本博客 GitHub 地址</a>
           </div>
 
@@ -19,7 +22,7 @@
             href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102003909"
             class="t-footer_record-公安"
           >
-            <img src="/src/assets/img/公安.png" alt="公安" />
+            <img src={img公安} alt="公安" />
             鄂公网安备 42011102003909号
           </a>
 

@@ -14,3 +14,12 @@ declare module "@kangc/v-md-editor/lib/plugins/line-number/index";
 declare module "@kangc/v-md-editor/lib/plugins/copy-code/index";
 
 declare module "@kangc/v-md-editor";
+
+declare module "*.svg" {
+  const imgUrl: string;
+  export default imgUrl;
+}
+declare module "*.png" {
+  const imgUrl: string;
+  export default imgUrl;
+}

@@ -5,6 +5,7 @@
   import { dateFormat } from "../utils/dateFormat";
   import { jumpTo } from "../utils/jumpRoute";
   import CTag from "./CTag.vue";
+  import hotImg from "../assets/img/hot.svg";
 
   export default defineComponent({
     name: "CPostCard",
@@ -27,11 +28,7 @@
               {post.title}
             </title>
             <div class="c-postcard_hot">
-              <img
-                src="/src/assets/img/hot.svg"
-                alt="hot"
-                class="c-postcard_hot-icon"
-              />
+              <img src={hotImg} alt="hot" class="c-postcard_hot-icon" />
               <span class="c-postcard_hot-count">{post.visited}</span>
             </div>
             <div class="c-postcard_digest">{post.digest}</div>

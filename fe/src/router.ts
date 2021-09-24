@@ -46,10 +46,13 @@ const NotFound = defineAsyncComponent({
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    name: "home",
-    component: Home,
-    meta: {
-      title: "首页",
+    // name: "home",
+    // component: Home,
+    // meta: {
+    //   title: "首页",
+    // },
+    redirect: {
+      name: "posts",
     },
   },
   {
