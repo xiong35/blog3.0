@@ -1,4 +1,4 @@
-import * as sha256 from "sha256";
+import sha256 from "sha256";
 
 import { clearToken, setToken } from "../../utils/token";
 import { request } from "../request";
