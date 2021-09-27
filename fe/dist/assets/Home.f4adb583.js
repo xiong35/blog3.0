@@ -1,1 +1,0 @@
-import{i as e,j as o}from"./index.de41ee78.js";import{d as s,c as a,e as t}from"./vendor.dcc053a3.js";var n=s({name:"Home",setup:s=>()=>a("div",{class:"p-home"},[a("h2",null,[t("Home")]),a("button",{onMouseenter:()=>e.value=!0,onMouseleave:()=>e.value=!1,onClick:e=>o(e,{name:"posts"})},[t("to posts")])])});export{n as default};
