@@ -8,6 +8,7 @@
   import imgHot from "../assets/img/hot.svg";
   import CBtn from "../components/CBtn.vue";
   import router from "../router";
+  import { delPost } from "../network/post/delPost";
 
   export default defineComponent({
     name: "PostDetail",
@@ -24,6 +25,15 @@
         post.value = p;
         content.value = p.content;
       });
+      async function handleDel() {
+        if (confirm("确认删除文章吗?")) {
+          const ok = await delPost(props.id);
+          if (ok) {
+            alert("删除成功!");
+            router.go(-1);
+          }
+        }
+      }
 
       return () => (
         <div class="p-post-detail">
@@ -52,16 +62,18 @@
             <CMdEditor readOnly content={content} />
           </main>
           {true ? (
-            <CBtn
-              content={"编辑"}
-              onClick={() =>
-                router.push({
-                  name: "admin-edit",
-                  params: { id: post.value._id },
-                })
-              }
-              style={{ margin: "1rem auto 0", display: "block", width: "5rem" }}
-            />
+            <div class="p-post-detail_actions">
+              <CBtn
+                content={"编辑"}
+                onClick={() =>
+                  router.push({
+                    name: "admin-edit",
+                    params: { id: post.value._id },
+                  })
+                }
+              />
+              <CBtn content={"删除"} onClick={handleDel} />
+            </div>
           ) : null}
         </div>
       );
@@ -119,6 +131,13 @@
 
     &_main {
       padding-top: 1rem;
+    }
+
+    &_actions {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
     }
   }
 </style>
