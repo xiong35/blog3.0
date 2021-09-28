@@ -3,13 +3,13 @@ import axios from "axios";
 import { GetDotRet } from "../../../shared/models/github";
 import { request } from "../request";
 
-const A_YEAR_AGO = new Date();
-A_YEAR_AGO.setFullYear(new Date().getFullYear() - 1);
+const HALF_YEAR_AGO = new Date();
+HALF_YEAR_AGO.setMonth(new Date().getMonth() - 6);
 
 const GET_DOTS = `
 query {
   user(login: "xiong35") {
-    contributionsCollection(from: "${A_YEAR_AGO.toISOString()}") {
+    contributionsCollection(from: "${HALF_YEAR_AGO.toISOString()}", to :"${new Date().toISOString()}") {
       contributionCalendar {
         weeks {
           contributionDays {

@@ -1,10 +1,15 @@
 <script lang="tsx">
   import { defineComponent, ref } from "vue";
+  import GithubHotMap from "../components/GithubHotMap.vue";
 
   export default defineComponent({
     name: "About",
     setup(props) {
-      return () => <div class="p-about">About</div>;
+      return () => (
+        <div class="p-about">
+          <GithubHotMap />
+        </div>
+      );
     },
   });
 </script>
