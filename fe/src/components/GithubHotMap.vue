@@ -883,7 +883,7 @@
                   {week.contributionDays.map((day, y) => (
                     <div
                       class={`c-gh-item lv-${getLv(day.contributionCount)}`}
-                      style={{ animationDelay: `${(x + y) / 15}s` }}
+                      style={{ animationDelay: `${(x + y) / 15 + 1.5}s` }}
                       data-hint={`${
                         day.contributionCount ? day.contributionCount : "No"
                       } commits on\n${day.date}`}
@@ -920,10 +920,22 @@
       top: 0.7em;
       left: 0;
       right: 0;
+      opacity: 0;
       font-size: 1.2em;
       font-weight: bold;
       text-align: center;
-      color: $primary-2;
+      color: $foreground;
+      animation: titlefloat-in 1s forwards 2s;
+      @keyframes titlefloat-in {
+        from {
+          top: 1.7em;
+          opacity: 0;
+        }
+        to {
+          top: 0.7em;
+          opacity: 1;
+        }
+      }
     }
   }
   .c-gh-col {

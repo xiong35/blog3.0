@@ -4,6 +4,7 @@
   import imgAvatar from "../assets/img/avatar.png";
   import CBtn from "../components/CBtn.vue";
   import router from "../router";
+  import { jumpTo } from "../utils/jumpRoute";
 
   export default defineComponent({
     name: "About",
@@ -16,9 +17,11 @@
               <div class="p-about_avatar_decorate"></div>
             </div>
           </div>
+          <title class="p-about_nickname">xiong35</title>
+          <section class="p-about_brief"></section>
           <nav class="p-about_navs">
             <CBtn
-              onClick={() => router.push({ name: "posts" })}
+              onClick={(e) => jumpTo(e, { name: "posts" })}
               content={"文章"}
             />
             <CBtn
@@ -214,6 +217,20 @@
       max-width: 300px;
       justify-content: space-around;
       width: 90vw;
+      opacity: 0;
+      top: 1rem;
+      animation: float-in 1.2s forwards 1s;
+      position: relative;
+      @keyframes float-in {
+        from {
+          opacity: 0;
+          top: 1rem;
+        }
+        to {
+          opacity: 1;
+          top: 0rem;
+        }
+      }
     }
   }
 </style>
