@@ -5,6 +5,7 @@
   import TheMask from "./components/TheMask.vue";
   import AdminLayout from "./layouts/Admin.vue";
   import CommonLayout from "./layouts/Common.vue";
+  import { getContributionMap } from "./network/user/getContributionMap";
 
   import router from "./router";
 
