@@ -26,6 +26,7 @@
     height: 200px;
     position: relative;
     border-radius: 999px;
+    font-size: 0.8rem;
 
     &_decorate {
       position: absolute;

@@ -1,5 +1,5 @@
 <script lang="tsx">
-  import { defineComponent, reactive, ref } from "vue";
+  import { defineComponent, onMounted, onUnmounted, reactive, ref } from "vue";
   import { Tag } from "../../shared/models/tag";
   import CBtn from "../components/CBtn.vue";
   import CMdEditor from "../components/CMdEditor.vue";
@@ -7,6 +7,8 @@
   import { getAllTags } from "../network/tag/getAllTags";
   import { addPost as addPostReq } from "../network/post/addPost";
   import { generateDigest } from "../utils/generateDigest";
+  import { getToken } from "../utils/token";
+  import router from "../router";
 
   export default defineComponent({
     name: "AdminCompose",
@@ -14,6 +16,11 @@
       const content = ref("");
       const tags = ref<Tag[]>([]);
       getAllTags().then((ts) => (tags.value = ts));
+
+      onMounted(() => {
+        if (!getToken())
+          router.push({ name: "admin-login" }).then(() => alert("请先登录!"));
+      });
 
       const activeTagNames = reactive(new Set<string>());
 
