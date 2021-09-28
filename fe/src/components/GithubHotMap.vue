@@ -15,14 +15,6 @@
                 {
                   contributionDays: [
                     {
-                      date: "2021-03-28",
-                      contributionCount: 8,
-                    },
-                    {
-                      date: "2021-03-29",
-                      contributionCount: 10,
-                    },
-                    {
                       date: "2021-03-30",
                       contributionCount: 10,
                     },
@@ -886,11 +878,12 @@
           {weeks.value ? (
             <div class="c-gh-hotmap">
               <title class="c-gh-hotmap_title">近半年 GitHub 提交记录</title>
-              {weeks.value.map((week) => (
+              {weeks.value.map((week, x) => (
                 <div class="c-gh-col">
-                  {week.contributionDays.map((day) => (
+                  {week.contributionDays.map((day, y) => (
                     <div
                       class={`c-gh-item lv-${getLv(day.contributionCount)}`}
+                      style={{ animationDelay: `${(x + y) / 15}s` }}
                       data-hint={`${
                         day.contributionCount ? day.contributionCount : "No"
                       } commits on\n${day.date}`}
@@ -935,7 +928,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    &:first-child {
+    &:nth-child(2) {
       align-self: flex-end;
     }
     &:last-child {
@@ -948,6 +941,27 @@
     margin: 0.15em 0;
     border-radius: 2px;
     background-color: $primary;
+    position: relative;
+    opacity: 0;
+    top: 3px;
+    left: 3px;
+    animation: fade-in 0.3s forwards;
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+        top: 3px;
+        left: 3px;
+      }
+      80% {
+        top: -1px;
+        left: -1px;
+      }
+      100% {
+        opacity: 1;
+        top: 0;
+        left: 0;
+      }
+    }
     &.lv-0 {
       background-color: $background-2;
     }
@@ -965,7 +979,6 @@
     }
 
     &:hover {
-      position: relative;
       &::after {
         content: attr(data-hint);
         position: absolute;

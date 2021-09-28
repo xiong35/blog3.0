@@ -6,7 +6,6 @@
   import AdminLayout from "./layouts/Admin.vue";
   import CommonLayout from "./layouts/Common.vue";
   import NoneLayout from "./layouts/None.vue";
-  import { getContributionMap } from "./network/user/getContributionMap";
 
   import router from "./router";
 
