@@ -1,1 +1,1 @@
-export const BE_DOMAIN = "http://api.xiong35.cn/blog3.0/";
+export const BE_DOMAIN = import.meta.env.VITE_BE_URL;

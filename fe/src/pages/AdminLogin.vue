@@ -1,12 +1,19 @@
 <script lang="tsx">
-  import { defineComponent, ref } from "vue";
+  import { defineComponent, onMounted, ref } from "vue";
   import CBtn from "../components/CBtn.vue";
   import { login } from "../network/user/login";
   import router from "../router";
+  import { getToken } from "../utils/token";
 
   export default defineComponent({
     name: "AdminLogin",
     setup(props) {
+      onMounted(() => {
+        if (getToken()) {
+          if (confirm("已登录, 是否前往创作界面?"))
+            router.push({ name: "admin-compose" });
+        }
+      });
       const password = ref("");
 
       async function doLogin() {
