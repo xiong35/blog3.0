@@ -907,9 +907,13 @@
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    padding: 3em 3.3em 0;
+    padding: 3em 2em 0;
     overflow: hidden;
     position: relative;
+
+    @media (max-width: 768.321px) {
+      font-size: 10px;
+    }
 
     &_title {
       position: absolute;
@@ -946,6 +950,7 @@
     top: 3px;
     left: 3px;
     animation: fade-in 0.3s forwards;
+    z-index: 0;
     @keyframes fade-in {
       0% {
         opacity: 0;
@@ -979,6 +984,7 @@
     }
 
     &:hover {
+      z-index: 1;
       &::after {
         content: attr(data-hint);
         position: absolute;
