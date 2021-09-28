@@ -9,7 +9,10 @@
     name: "AdminLogin",
     setup(props) {
       onMounted(() => {
-        if (getToken()) router.push({ name: "admin-compose" });
+        if (getToken()) {
+          if (confirm("已登录, 是否前往创作界面?"))
+            router.push({ name: "admin-compose" });
+        }
       });
       const password = ref("");
 

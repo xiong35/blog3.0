@@ -5,17 +5,23 @@
   import CMdEditor from "../components/CMdEditor.vue";
   import CTag from "../components/CTag.vue";
   import { getAllTags } from "../network/tag/getAllTags";
-  import { addPost as addPostReq } from "../network/post/addPost";
+  import { updatePost as updatePostReq } from "../network/post/updatePost";
   import { generateDigest } from "../utils/generateDigest";
   import { getToken } from "../utils/token";
   import router from "../router";
+  import { getPostDetail } from "../network/post/getPostDetail";
 
   export default defineComponent({
-    name: "AdminCompose",
+    name: "AdminEdit",
+    props: { id: { type: String, required: true } },
     setup(props) {
       const content = ref("");
       const tags = ref<Tag[]>([]);
       getAllTags().then((ts) => (tags.value = ts));
+      getPostDetail(props.id).then((post) => {
+        content.value = post.content;
+        post.tags.forEach((t) => activeTagNames.add(t.name));
+      });
 
       onMounted(() => {
         if (!getToken())
@@ -24,7 +30,7 @@
 
       const activeTagNames = reactive(new Set<string>());
 
-      async function addPost() {
+      async function updatePost() {
         const reg = /# (.*)\n([\s\S]*)/gm;
         const [_, title, main] = reg.exec(content.value) || [];
         if (!title) return alert("没有标题");
@@ -32,24 +38,29 @@
 
         const digest = generateDigest(main);
 
-        const ok = await addPostReq({
-          digest,
-          title,
-          content: content.value,
-          tagNames: [...activeTagNames],
-        });
-        if (ok) alert("发布成功!");
-        else alert("出错了!");
+        const ok = await updatePostReq(
+          {
+            digest,
+            title,
+            content: content.value,
+            tagNames: [...activeTagNames],
+          },
+          props.id
+        );
+        if (ok) {
+          alert("修改成功!");
+          router.go(-1);
+        } else alert("出错了!");
       }
 
       return () => (
-        <div class="pa-compose">
-          <div class="pa-compose_wrapper">
+        <div class="pa-edit">
+          <div class="pa-edit_wrapper">
             <CMdEditor content={content} />
-            <div class="pa-compose_wrapper-tags">
+            <div class="pa-edit_wrapper-tags">
               {tags.value.map((t) => (
                 <CTag
-                  class="pa-compose_wrapper-tags-tag"
+                  class="pa-edit_wrapper-tags-tag"
                   name={t.name}
                   key={t._id}
                   active={activeTagNames.has(t.name)}
@@ -61,7 +72,7 @@
                 />
               ))}
               <CTag
-                class="pa-compose_wrapper-tags-tag"
+                class="pa-edit_wrapper-tags-tag"
                 name="添加+"
                 onClick={() => {
                   const name = prompt("输入新标签的名字：");
@@ -76,7 +87,11 @@
             </div>
           </div>
 
-          <CBtn class="pa-compose_upload" onClick={addPost} content="上传" />
+          <CBtn
+            class="pa-edit_upload"
+            onClick={updatePost}
+            content="确认修改"
+          />
         </div>
       );
     },
@@ -86,7 +101,7 @@
 <style lang="scss">
   @import "../assets/css/variables.scss";
 
-  .pa-compose {
+  .pa-edit {
     padding: 2rem;
     text-align: center;
 

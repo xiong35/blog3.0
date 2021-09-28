@@ -6,6 +6,8 @@
   import { getPostDetail } from "../network/post/getPostDetail";
   import { dateFormat } from "../utils/dateFormat";
   import imgHot from "../assets/img/hot.svg";
+  import CBtn from "../components/CBtn.vue";
+  import router from "../router";
 
   export default defineComponent({
     name: "PostDetail",
@@ -49,6 +51,18 @@
           <main class="p-post-detail_main">
             <CMdEditor readOnly content={content} />
           </main>
+          {true ? (
+            <CBtn
+              content={"编辑"}
+              onClick={() =>
+                router.push({
+                  name: "admin-edit",
+                  params: { id: post.value._id },
+                })
+              }
+              style={{ margin: "1rem auto 0", display: "block", width: "5rem" }}
+            />
+          ) : null}
         </div>
       );
     },
