@@ -36,6 +36,9 @@ const updatePost = (ctx) => __awaiter(void 0, void 0, void 0, function* () {
     const post = yield post_1.Post.findOne({ _id: id }).catch((e) => null);
     if (!post)
         (0, useHandleError_1.createError)({ msg: "找不到文章", status: 404 });
+    post.content = req.content;
+    post.title = req.title;
+    post.digest = req.digest;
     console.log("# updatePost", post);
     const oldTagNames = new Set(post.tags.map((t) => t.name));
     const newTagNames = new Set(req.tagNames);
