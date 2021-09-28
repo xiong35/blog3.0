@@ -66,6 +66,7 @@ let routes: RouteRecordRaw[] = [
     component: About,
     meta: {
       title: "关于我",
+      none: true,
     },
   },
   {
