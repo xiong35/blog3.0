@@ -22,6 +22,11 @@ const AdminLogin = defineAsyncComponent({
   errorComponent: CError,
   loadingComponent: CLoading,
 });
+const AdminEdit = defineAsyncComponent({
+  loader: () => import("./pages/AdminEdit.vue"),
+  errorComponent: CError,
+  loadingComponent: CLoading,
+});
 const Home = defineAsyncComponent({
   loader: () => import("./pages/Home.vue"),
   errorComponent: CError,
@@ -79,6 +84,21 @@ let routes: RouteRecordRaw[] = [
     meta: {
       title: "登录后台",
       admin: true,
+    },
+  },
+  {
+    path: "/admin/edit/:id",
+    name: "admin-edit",
+    component: AdminEdit,
+    meta: {
+      title: "编辑文章",
+      admin: true,
+    },
+    props: (route) => ({
+      id: route.params.id,
+    }),
+    beforeEnter: (to) => {
+      if (!to.params.id) return { name: "not-found" };
     },
   },
   {
