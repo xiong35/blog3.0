@@ -18,7 +18,8 @@
     "koa-logger": "^3.2.1",
     "koa-router": "^10.1.1",
     "mongoose": "^6.0.7",
-    "sha256": "^0.2.0"
+    "sha256": "^0.2.0",
+    "ua-device": "^0.1.10"
   },
   "devDependencies": {
     "@types/koa": "^2.13.4",
