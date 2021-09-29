@@ -24,5 +24,5 @@ ${info.browser.name ? "用的是 " + info.browser.name + " 浏览器是吧" : "<
 ip 是 ${host} 是吧
 这就去 gank 你!`;
 
-  ctx.response.redirect("http://localhost:3000/blog3.0/?m=" + rtString);
+  ctx.response.redirect("http://www.xiong35.cn/blog3.0/?m=" + rtString);
 };
