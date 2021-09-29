@@ -16,7 +16,7 @@
       const content = ref("");
       let i = 0;
 
-      const timer = window.setInterval(addChar, 200);
+      const timer = window.setInterval(addChar, 100);
 
       let preAddToContent = false;
       let addToContent = false;
@@ -69,7 +69,7 @@
     background-color: #000;
     color: #fff;
     min-height: 100vh;
-    white-space: pre;
+    white-space: pre-line;
     a {
       color: #3e88ff;
     }

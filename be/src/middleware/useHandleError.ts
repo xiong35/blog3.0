@@ -21,7 +21,8 @@ const useHandleError = function (): Middleware {
         console.error(err);
       }
     } finally {
-      ctx.status = 200;
+      if (ctx.status === 301 || ctx.status === 302) void 0;
+      else ctx.status = 200;
     }
   };
 };
