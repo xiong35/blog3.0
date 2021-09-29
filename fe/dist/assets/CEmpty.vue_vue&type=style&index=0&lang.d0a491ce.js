@@ -1,0 +1,1 @@
+import{d as s,c as a,e}from"./vendor.352936e6.js";var t=s({name:"CEmpty",setup:s=>()=>a("div",{class:"c-empty"},[a("span",{class:"c-empty_hint"},[e("什么都没有，该有什么呢")]),a("div",{class:"c-empty_decorate"},null)])});export{t as _};

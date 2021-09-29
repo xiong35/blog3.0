@@ -2501,6 +2501,11 @@ typescript@^4.4.3:
   resolved "https://registry.nlark.com/typescript/download/typescript-4.4.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ftypescript%2Fdownload%2Ftypescript-4.4.3.tgz#bdc5407caa2b109efd4f82fe130656f977a29324"
   integrity sha1-vcVAfKorEJ79T4L+EwZW+XeikyQ=
 
+ua-device@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.npm.taobao.org/ua-device/download/ua-device-0.1.10.tgz#7e1a1b305d51e114032467092081c1d6374a4dce"
+  integrity sha1-fhobMF1R4RQDJGcJIIHB1jdKTc4=
+
 undefsafe@^2.0.3:
   version "2.0.3"
   resolved "https://registry.nlark.com/undefsafe/download/undefsafe-2.0.3.tgz#6b166e7094ad46313b2202da7ecc2cd7cc6e7aae"
