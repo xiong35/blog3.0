@@ -8,7 +8,7 @@ const useHandleError_1 = require("./middleware/useHandleError");
 const models_1 = require("./models");
 const router_1 = require("./router");
 (0, models_1.setupMongo)();
-const app = new Koa();
+const app = new Koa({ proxy: true });
 app
     .use(logger())
     .use(cors({
