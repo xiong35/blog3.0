@@ -57,6 +57,9 @@ let routes: RouteRecordRaw[] = [
       title: "首页",
       none: true,
     },
+    props: (route) => ({
+      msg: route.query.m,
+    }),
   },
   {
     path: "/about",

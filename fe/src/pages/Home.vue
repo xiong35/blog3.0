@@ -4,7 +4,14 @@
 
   export default defineComponent({
     name: "Home",
+    props: {
+      msg: String,
+    },
     setup(props) {
+      let msg: string = "";
+      if (props.msg) msg = props.msg;
+      else msg = homePageMsg;
+
       const html = ref("");
       const content = ref("");
       let i = 0;
@@ -15,11 +22,11 @@
       let addToContent = false;
 
       function addChar() {
-        if (i === homePageMsg.length) {
+        if (i === msg.length) {
           return clearInterval(timer);
         }
 
-        const char = homePageMsg[i++];
+        const char = msg[i++];
 
         if (char === "$") return;
         if (char === "^") {
