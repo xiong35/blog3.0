@@ -13,7 +13,7 @@ setupMongo();
 const app = new Koa<
   { isKnownError: Boolean },
   { error: (status: number, msg: string) => void }
->();
+>({ proxy: true });
 
 app
   .use(logger())
