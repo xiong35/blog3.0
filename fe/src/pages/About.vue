@@ -245,5 +245,11 @@
         }
       }
     }
+
+    .p_about-msg-name {
+      font-size: 1.7em;
+      font-weight: bold;
+      color: $primary;
+    }
   }
 </style>

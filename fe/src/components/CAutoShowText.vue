@@ -63,7 +63,11 @@
   @import "../assets/css/variables.scss";
 
   .c-auto-show-text {
-    white-space: pre-line;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New,
+      monospace;
+    line-height: 1.25;
     &__ {
       animation: shine 1.3s infinite;
       @keyframes shine {
