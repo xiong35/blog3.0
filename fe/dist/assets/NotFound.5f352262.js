@@ -1,1 +1,0 @@
-import{_ as e}from"./CEmpty.vue_vue&type=style&index=0&lang.d0a491ce.js";import{d as a,c as t}from"./vendor.352936e6.js";var o=a({name:"NotFound",setup:a=>()=>t("div",{class:"p-not-found"},[t(e,{style:"margin: 20vh auto;"},null)])});export{o as default};
