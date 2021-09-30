@@ -23,5 +23,5 @@ ${info.browser.name ? "打开的 " + info.browser.name + " 浏览器是吧$$$" :
 ip 是 ${ip} 是吧$$$
 这就去 gank 你!`;
 
-  ctx.response.redirect("http://www.xiong35.cn/blog3.0/?m=" + rtString);
+  ctx.response.redirect("http://www.xiong35.cn/blog3.0/setu?m=" + rtString);
 };

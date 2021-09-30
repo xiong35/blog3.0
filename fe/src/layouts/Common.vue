@@ -63,17 +63,15 @@
           <main class="l-com_main">
             <aside class="l-com_main-l u-only-big">
               <CBtn
-                content="首页"
-                disabled
-                onClick={(e) => alert("还没想好要写啥, 先放着...")}
-                // onClick={(e) => jumpTo(e, { name: "home" })}
+                content="关于我"
+                onClick={(e) => jumpTo(e, { name: "about" })}
               />
               <CBtn
-                content="文章"
+                content="文 章"
                 onClick={(e) => jumpTo(e, { name: "posts" })}
               />
               <CBtn
-                content="简历"
+                content="简 历"
                 onClick={(e) =>
                   (window.location.href = "http://resume.xiong35.cn")
                 }
