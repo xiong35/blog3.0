@@ -1,16 +1,13 @@
 <script lang="tsx">
-  import { defineComponent, onMounted, ref } from "vue";
-  import { homePageMsg } from "../constants/homePageMsg";
+  import { defineComponent, ref } from "vue";
 
   export default defineComponent({
-    name: "Home",
+    name: "CAutoShowText",
     props: {
-      msg: String,
+      msg: { type: String, required: true },
     },
     setup(props) {
-      let msg: string = "";
-      if (props.msg) msg = props.msg;
-      else msg = homePageMsg;
+      const { msg } = props;
 
       const html = ref("");
       const content = ref("");
@@ -51,11 +48,11 @@
       }
 
       return () => (
-        <div class="p-home">
-          <span class="p-home_html" v-html={html.value}></span>
-          <span class="p-home_content">{content.value}</span>
+        <div class="c-auto-show-text">
+          <span class="c-auto-show-text_html" v-html={html.value}></span>
+          <span class="c-auto-show-text_content">{content.value}</span>
 
-          <span class="p-home__">_</span>
+          <span class="c-auto-show-text__">_</span>
         </div>
       );
     },
@@ -63,17 +60,14 @@
 </script>
 
 <style lang="scss">
-  .p-home {
-    padding: 1rem;
-    font-size: 1.2rem;
-    background-color: #000;
-    color: #fff;
-    min-height: 100vh;
-    white-space: pre-line;
-    a {
-      color: #3e88ff;
-    }
+  @import "../assets/css/variables.scss";
 
+  .c-auto-show-text {
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New,
+      monospace;
+    line-height: 1.25;
     &__ {
       animation: shine 1.3s infinite;
       @keyframes shine {

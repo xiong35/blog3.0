@@ -27,11 +27,6 @@ const AdminEdit = defineAsyncComponent({
   errorComponent: CError,
   loadingComponent: CLoading,
 });
-const Home = defineAsyncComponent({
-  loader: () => import("./pages/Home.vue"),
-  errorComponent: CError,
-  loadingComponent: CLoading,
-});
 const PostDetail = defineAsyncComponent({
   loader: () => import("./pages/PostDetail.vue"),
   errorComponent: CError,
@@ -52,14 +47,12 @@ let routes: RouteRecordRaw[] = [
   {
     path: "/",
     name: "home",
-    component: Home,
     meta: {
       title: "首页",
-      none: true,
     },
-    props: (route) => ({
-      msg: route.query.m,
-    }),
+    redirect: {
+      name: "about",
+    },
   },
   {
     path: "/about",
@@ -136,7 +129,11 @@ let routes: RouteRecordRaw[] = [
     component: NotFound,
     meta: {
       title: "404",
+      none: true,
     },
+    props: (route) => ({
+      msg: route.query.m,
+    }),
   },
 ];
 

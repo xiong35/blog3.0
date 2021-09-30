@@ -5,6 +5,8 @@
   import CBtn from "../components/CBtn.vue";
   import router from "../router";
   import { jumpTo } from "../utils/jumpRoute";
+  import CAutoShowText from "../components/CAutoShowText.vue";
+  import { aboutPageMsg } from "../constants/aboutPageMsg";
 
   export default defineComponent({
     name: "About",
@@ -17,8 +19,9 @@
               <div class="p-about_avatar_decorate"></div>
             </div>
           </div>
-          <title class="p-about_nickname">xiong35</title>
-          <section class="p-about_brief"></section>
+          <section class="p-about_brief">
+            <CAutoShowText msg={aboutPageMsg} />
+          </section>
           <nav class="p-about_navs">
             <CBtn
               onClick={(e) => jumpTo(e, { name: "posts" })}
@@ -211,6 +214,16 @@
       }
     }
 
+    &_brief {
+      margin-top: 3rem;
+      background-color: $background-0;
+      width: 380px;
+      max-width: 90vw;
+      padding: 1em 2em;
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
     &_navs {
       display: flex;
       margin: 3rem auto;
@@ -231,6 +244,12 @@
           top: 0rem;
         }
       }
+    }
+
+    .p_about-msg-name {
+      font-size: 1.7em;
+      font-weight: bold;
+      color: $primary;
     }
   }
 </style>
