@@ -64,7 +64,7 @@
 
   .c-auto-show-text {
     white-space: pre-wrap;
-    word-wrap: break-word;
+    word-break: break-all;
     font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New,
       monospace;
     line-height: 1.25;
