@@ -14,7 +14,7 @@
   import router from "../router";
   import { scrollToTop } from "../utils/scrollTo";
   import CBtn from "./CBtn.vue";
-  import CEmpty from "./CEmpty.vue";
+  import CPlaceholder from "./CPlaceholder.vue";
   import CPostCard from "./CPostCard.vue";
 
   export default defineComponent({
@@ -116,7 +116,10 @@
                 ))}
               </>
             ) : (
-              <CEmpty style={{ margin: "10vh auto" }} />
+              <CPlaceholder
+                msg="什么都没有, 该有什么呢"
+                style={{ margin: "10vh auto" }}
+              />
             )}
           </div>
           <div class="c-post-list_pager">

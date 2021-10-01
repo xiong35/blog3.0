@@ -31,13 +31,12 @@ export async function getContributionMap() {
       { query: GET_DOTS },
       {
         headers: {
-          Authorization: "token 259590070c2bc54b2a687ab882f35f1e3e85797e",
+          Authorization: "token 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",
         },
       }
     )
     .catch((e) => e);
   if (res && res.data && res.data.data) {
-    console.log("# getContributionMap", res.data.data);
     return res.data.data as GetDotRet;
   } else {
     return null;

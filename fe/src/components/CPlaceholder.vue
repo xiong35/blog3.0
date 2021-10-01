@@ -2,11 +2,14 @@
   import { defineComponent, ref } from "vue";
 
   export default defineComponent({
-    name: "CEmpty",
+    name: "CPlaceholder",
+    props: {
+      msg: String,
+    },
     setup(props) {
       return () => (
         <div class="c-empty">
-          <span class="c-empty_hint">什么都没有，该有什么呢</span>
+          <span class="c-empty_hint">{props.msg}</span>
           <div class="c-empty_decorate"></div>
         </div>
       );
@@ -79,6 +82,11 @@
           transform: rotate(360deg);
         }
       }
+    }
+
+    &_hint {
+      margin: 0 2rem;
+      word-break: break-all;
     }
   }
 </style>
