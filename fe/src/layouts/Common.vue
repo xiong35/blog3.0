@@ -19,12 +19,14 @@
       const tags = ref<Tag[]>([]);
       getAllTags().then((ts) => (tags.value = ts));
 
+      const showMenu = ref(false);
+
       return () => (
         <div class="l-com">
           <header class="l-com_header">
             <div class="l-com_header-content">
               <div
-                class="l-com_header-logo"
+                class="l-com_header-logo u-only-big"
                 onClick={() => router.push({ name: "about" })}
                 onMouseleave={() => (isHovering.value = false)}
                 onMouseenter={() => (isHovering.value = true)}
@@ -55,10 +57,31 @@
                 />
               </div>
 
-              {/* <img
-                class="l-com_header-menu u-only-small"
+              <img
+                class="l-com_header-menuBtn u-only-small"
                 src={imgMenu}
-              /> */}
+                onClick={() => (showMenu.value = true)}
+              />
+              <div
+                class={`l-com_header-menuBox ${showMenu.value ? "show" : ""}`}
+                onClick={() => (showMenu.value = false)}
+              >
+                <h2 class="l-com_header-menuBox-title">站内导航</h2>
+                <CBtn
+                  content="关于我"
+                  onClick={(e) => jumpTo(e, { name: "about" })}
+                />
+                <CBtn
+                  content="文 章"
+                  onClick={(e) => jumpTo(e, { name: "posts" })}
+                />
+                <CBtn
+                  content="简 历"
+                  onClick={(e) =>
+                    (window.location.href = "http://resume.xiong35.cn")
+                  }
+                />
+              </div>
             </div>
           </header>
 
@@ -172,8 +195,34 @@
       }
 
       &-menu {
-        width: 1.5em;
-        margin-left: 20px;
+        &Btn {
+          width: 1.5em;
+          margin-left: 16px;
+        }
+        &Box {
+          position: fixed;
+          top: 0;
+          height: 0;
+          left: 0;
+          right: 0;
+          overflow: hidden;
+          transition: height 0.3s;
+          background-color: $background-0;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          &-title {
+            margin: 2rem;
+            color: $secondary;
+          }
+
+          .c-btn {
+            margin: 1rem;
+          }
+          &.show {
+            height: 100vh;
+          }
+        }
       }
     }
 
