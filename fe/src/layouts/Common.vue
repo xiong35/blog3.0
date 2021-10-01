@@ -25,7 +25,9 @@
             <div class="l-com_header-content">
               <div
                 class="l-com_header-logo"
-                onClick={() => router.push({ name: "posts" })}
+                onClick={() => router.push({ name: "about" })}
+                onMouseleave={() => (isHovering.value = false)}
+                onMouseenter={() => (isHovering.value = true)}
               >
                 Xiong<sup>35 </sup>'s Blog
               </div>

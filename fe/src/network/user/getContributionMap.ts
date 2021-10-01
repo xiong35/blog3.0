@@ -37,7 +37,6 @@ export async function getContributionMap() {
     )
     .catch((e) => e);
   if (res && res.data && res.data.data) {
-    console.log("# getContributionMap", res.data.data);
     return res.data.data as GetDotRet;
   } else {
     return null;
