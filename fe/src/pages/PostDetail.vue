@@ -9,6 +9,7 @@
   import CBtn from "../components/CBtn.vue";
   import router from "../router";
   import { delPost } from "../network/post/delPost";
+  import { setTitle } from "../utils/setTitle";
 
   export default defineComponent({
     name: "PostDetail",
@@ -24,6 +25,7 @@
       getPostDetail(props.id).then((p) => {
         post.value = p;
         content.value = p.content;
+        setTitle(p.title);
       });
       async function handleDel() {
         if (confirm("确认删除文章吗?")) {
